@@ -112,6 +112,8 @@ button:hover {
 .accountItems {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .form {
     display: flex;
@@ -136,7 +138,137 @@ button:hover {
     color: black;
     padding: 10px;
 }
+/*  */
+.submitButton:hover {
+    background: rgb(224, 112, 55);
+  
+  }
+  .submitButton {
+    border-radius: 10px;
+  
+  }
+  input {
+    border-radius: 5px;
+  }
+  select, input[type=checkbox], .submitButton:hover{
+    cursor: pointer;
+  
+  }
+  .registerForm {
+    width: 300px;
+    height: auto;
+    background-color: rgb(9, 116, 39);
+  }
+  /* .loginForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } */
+  .registerForm {
+    padding: 40px;
+    margin: 10px;
+    margin-top: 50px;
+    /* height: 500px;
+    width: 500px; */
+    
+    box-shadow: rgba(41, 41, 41, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+  }
+  /* .loginForm h2 {
+    padding: 10px;
+    margin: 10px;
+  }
+  .loginForm input[type="text"], .loginForm input[type="password"] {
+    margin-left: 0;
+  }
+   */
+.registerView {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: space-evenly; */
+  }
+  
+  .registerForm {
+    overflow-y: scroll;
+  }
+  
+  .redirect {
+    margin: 10px;
+    margin-top: 0;
+    padding: 10px;
+    font-weight: lighter;
+    font-size: small;
+  }
+  
+  .iconField {
+    margin: 0px;
+    padding: 10px;
+    height: auto;
+    width: auto;
+    /* max-height: 15px; */
+    margin-right: 0;
+    box-shadow: rgba(41, 41, 41, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    background-color: white;
+  
+  }
+  
+  .labelInput {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    margin: 5px;
+    /* box-shadow: rgba(41, 41, 41, 0.35) 0px 1px 5px; */
+    border-radius: 5px;
+  }
+  
+  input::placeholder {
+    color: #faf4f473;
+  
+  }
+ .registerForm form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .messageGreen {
+    color: rgb(47, 98, 47);
+    font-weight: bolder;
+  }
+  
+  .messageRed {
+    color: red;
+  }
+  
+  .messagePHP {
+    color: red;
+    /* border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(41, 41, 41, 0.35) 0px 1px 5px; */
+  }
+  
+  #usernameMessage, #checkboxMessage, #passwordMessage, #messagePHP{
+    color: red;
+  }
+  
+  #warning {
+    width: 200px;
+  }
+  
+  /* Not finished pages */
+  .bx-cog, .bx-question-mark, .bx-message-dots {
+    cursor: not-allowed;
+  
+  }
 
+/*  */
 .registerClass:hover {
     background-color: white;
     transform: 1s;

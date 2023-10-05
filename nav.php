@@ -124,7 +124,7 @@
             <a href="logout.php" class="navLinkLogin">Logout: <i class='bx bxs-user-minus' ></i></a>
             <?php else: ?>
             <a href="loginForm.php" class="navLinkLogin">Login: <i class='bx bxs-user' ></i></a>
-            <!-- <a href="registerForm.php" class="navLinkLogin">Register: <i class='bx bxs-user-plus'></i></a> -->
+            <a href="registerForm.php" class="navLinkLogin">Register: <i class='bx bxs-user-plus'></i></a>
         <?php endif; ?>
  
     </div>

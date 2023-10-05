@@ -7,77 +7,48 @@
     <title>Register</title>
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4773475340562413"
+     crossorigin="anonymous"></script>
 </head>
 <body>
     <?php include("nav.php"); ?>
     <main>
         <div class="content">
-            <div class="accountPage">     
-                <div class="basCard">
-                    <div class="accountItems">
-                    <h1>Registreer medewerker:</h1>
-
-                        <div class="accountForm">            
-                            <form method="post" id="register" action="register.php">
-                                <label for="username">Username:</label>
-                                <input type="text" id="username" name="username" required>
-                                <p id="usernameMessage"></p>
-                                <br>
-                                <label for="surName">Voornaam:</label>
-                                <input type="text" id="surName" name="surName" required>
-                                <br>
-                                <label for="lastName">Achternaam:</label>
-                                <input type="text" id="lastName" name="lastName" required>
-                                <br>
-                                <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" required>
-                                <br>
-                                <label for="password">Password:</label>
-                                <input type="password" id="password" name="password" required>
-                                <br>  
-                                
-                                
-                                <!-- <div class="room">
-                                    <button id="warningExplained">
-                                    
-                                            <i id="infoCircle" class='bx bx-info-circle' ></i>
-                                            <p id="warning"><i class='bx bx-error' ></i>WARNING: Please don't fill in any sensitive information. </p>
-
-                                            <h2 id="warningTitle"></h2>
-                                            <p id="warningText"></p>
-                                            <p id="warningText2"></p>
-                                    </button>
-                                </div>                     -->
-
-                                <label for="confirm_password">Confirm Password:</label>
-                                <input type="password" id="confirm_password" name="confirm_password" required>
-                                <p id="passwordMessage"></p>
-
-                                <br>
-                                <label for="function">Functie:</label>
-                                <br>
-                                <select id="function" name="functie">
-                                    <option value="verkoper">Verkoper</option>
-                                    <option value="inkoper">Inkoper</option>
-                                    <option value="bezorger">Bezorger</option>
-                                    <option value="magazijnMeester">Magazijn Meester</option>
-                                    <option value="magazijnMedewerker">Magazijn Medewerker</option>
-                                </select>
-                                
-                                <div id="messagePHP"><?php
-
-                                    if (isset($_SESSION['message'])) {
-                                        echo $_SESSION['message'];
-                                        unset($_SESSION['message']);
-                                    }
-                                    ?>
-                                </div>
-                                <br>
-
-                                <input type="submit" name="register" value="Create Account">
-                            </form>
+            <div class="registerView"> 
+            <h2>Register</h2>  
+    
+               
+                <div class="registerForm">            
+                    <form method="post" id="register" action="register.php">
+                    <div class="labelInput">
+                        <label class="iconField" for="username"><i class='bx bxs-user'></i></label>
+                        <input type="text" id="username" name="username" placeholder="Username" value="<?php echo isset($_SESSION['usernamePost']) ? $_SESSION['usernamePost'] : ''; ?>" required>
                         </div>
-                    </div>
+                        <p id="usernameMessage"></p>
+                        <div class="labelInput">
+                        <label class="iconField" for="email"><i class='bx bxs-envelope' ></i></label>
+                        <input type="text" id="email" name="email" placeholder="email" value="<?php echo isset($_SESSION['emailPost']) ? $_SESSION['emailPost'] : ''; ?>" required>
+                        </div>                 
+                        <div class="labelInput">
+                        <label class="iconField" for="password"><i class='bx bxs-lock-open-alt'></i></label>
+                        <input type="password" id="password" name="password" placeholder="Password" value="<?php echo isset($_SESSION['passwordPost']) ? $_SESSION['passwordPost'] : ''; ?>" required>
+                        </div>
+                        <div class="labelInput">
+                        <label class="iconField" for="confirm_password"><i class='bx bxs-lock-alt' ></i></label>
+                        <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" value="<?php echo isset($_SESSION['confirm_passwordPost']) ? $_SESSION['confirm_passwordPost'] : ''; ?>" required>
+                        </div>
+                        <p id="passwordMessage"></p>
+                        <p id="checkboxMessage"></p>
+
+                        <div id="messagePHP"><?php
+
+                        if (isset($_SESSION['message'])) {
+                            echo $_SESSION['message'];
+                            unset($_SESSION['message']);
+                        }
+                        ?></div>
+                        <input type="submit" name="register" value="Create Account" class="submitButton">
+                    </form>
                 </div>
             </div>
         </div>
@@ -87,7 +58,7 @@
             padding: 10px;
             margin: 10px;
         }
-
+        
 
         input {
              width: 200px;
@@ -101,7 +72,27 @@
             width: 30px;
         }
 
-       
+      
+        select, input {
+        width: 200px;
+        padding: 10px 15px;
+        margin: 5px 0;
+        box-sizing: border-box;
+        /* background-image: url('img/gif.gif'); */
+        background-color: #ffffff7d ;
+
+        border-radius: 10px;
+    }
+    #update:hover {
+        /* input[type="submit"] { */
+        background-color: #f23f5f;
+    }
+    select option {
+        /* background-color: #ffc0cb; */
+    }
+    ::placeholder {
+            color: black; /* Text color for the placeholder */
+        }
 
 
     </style>
@@ -117,37 +108,16 @@
         const usernameInput = document.getElementById("username");
         
         //explained
-        // const warning = document.getElementById("warning");
-        // const warningExplained = document.getElementById("warningExplained");
-        // const warningTitle = document.getElementById("warningTitle");
-        // const warningText = document.getElementById("warningText");
-        // const warningText2 = document.getElementById("warningText2");
+        const warning = document.getElementById("warning");
+        const warningExplained = document.getElementById("warningExplained");
+        const warningTitle = document.getElementById("warningTitle");
+        const warningText = document.getElementById("warningText");
+        const warningText2 = document.getElementById("warningText2");
         
         const curseWords = ["fuck", "hell","crap", "damn", "ass", "hoe", "whore", "kanker", "kut", "tering" , "shite", "nigger", "nigga" ,"shit", "bitch"];
 
-      
-    //     warningExplained.addEventListener('click', () => {
-    //         console.log('testing')
-    //         if(isClicked) {
-    //             warning.innerHTML = "WARNING: Please don't fill in any sensitive information.";
-    //             warningTitle.innerHTML = '';
-    //             warningText.innerHTML = '';
-    //             warningText2.innerHTML = '';
-    //             explained.classList.remove('opened');
-    //             isClicked = false;
-    //         } else {
-    //             warningTitle.innerHTML = "Warning sensitive information";
-    //             warningText.innerHTML = "I cannot guarantee that your password is safe. Don't use any repeated password that you might have used before on any account login.";
-    //             warningText2.innerHTML = "";
-    //             warning.innerHTML = "";
-    //             warningExplained.classList.add('opened');
-    //             isClicked = true;
-    //         }
-        
-    // });
-
         // Set maximum username length
-        var maxUsernameLength = 12;
+        var maxUsernameLength = 22;
 
         // Add event listener for form submit
         form.addEventListener("submit", function(event) {
@@ -184,22 +154,8 @@
             }
         });
 
-        // function checkAgreement() {
-        //     if (!document.getElementById("agreement").checked) {
-        //     alert("You must agree to the warning before submitting the form.");
-        //     return false;
-        //     }
-        //     return true;
-        // }
-        
-//         form.addEventListener("submit", function(event) {
-//     if (!warningCheckbox.checked) {
-//         alert("You must agree to the warning before submitting the form.");
-//         event.preventDefault();
-//     }
-// });
-    </script>
-<?php require 'footer.php'?>
 
+    </script>
+<script src="assets/main.js"></script>
 </body>
 </html>
