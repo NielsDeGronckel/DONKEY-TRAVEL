@@ -28,7 +28,12 @@
                         <div class="labelInput">
                         <label class="iconField" for="email"><i class='bx bxs-envelope' ></i></label>
                         <input type="text" id="email" name="email" placeholder="email" value="<?php echo isset($_SESSION['emailPost']) ? $_SESSION['emailPost'] : ''; ?>" required>
-                        </div>                 
+                        </div>    
+                        <div class="labelInput">
+                        <label class="iconField" for="telefoon"><i class='bx bxs-phone'></i></label>
+                        <input type="tel" id="telefoon" name="telefoon" pattern="[0-9]{10}" placeholder="1234567890" value="<?php echo isset($_SESSION['telefoonPost']) ? $_SESSION['telefoonPost'] : ''; ?>" required>
+                        <!-- <small>Enter a 10-digit phone number without spaces or dashes.</small> -->
+                        </div>    
                         <div class="labelInput">
                         <label class="iconField" for="password"><i class='bx bxs-lock-open-alt'></i></label>
                         <input type="password" id="password" name="password" placeholder="Password" value="<?php echo isset($_SESSION['passwordPost']) ? $_SESSION['passwordPost'] : ''; ?>" required>
@@ -48,6 +53,8 @@
                         }
                         ?></div>
                         <input type="submit" name="register" value="Create Account" class="submitButton">
+                        <p class="redirect">Already have an account? <a href="loginForm.php">Login here<i class='bx bxs-right-arrow-alt'></i></a></p>
+
                     </form>
                 </div>
             </div>
@@ -114,7 +121,7 @@
         const warningText = document.getElementById("warningText");
         const warningText2 = document.getElementById("warningText2");
         
-        const curseWords = ["fuck", "hell","crap", "damn", "ass", "hoe", "whore", "kanker", "kut", "tering" , "shite", "nigger", "nigga" ,"shit", "bitch"];
+        const curseWords = ["slet", "kont", "bil", "ass", "booty", "neuk", "auti", "autist", "flikker", "dildo", "kkr", "lukas", "fuck", "hell","crap", "damn", "ass", "hoe", "hoer", "whore", "kanker", "kut", "tering" , "shite", "nigger", "nigga" ,"shit", "bitch"];
 
         // Set maximum username length
         var maxUsernameLength = 22;

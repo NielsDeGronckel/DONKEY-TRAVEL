@@ -20,7 +20,7 @@
                 
 
                     // Display different navigation bar based on user's 'functie'
-                    switch($functie) {
+                    switch($rights) {
                         case "ceo":
                             // Display navigation bar for afdelingsHoofd
                             echo '<a href="registerForm.php" class="navLink">Register</a>'; 
@@ -100,6 +100,12 @@
 
 
                         break;
+                        case "klant":
+                            // Display navigation bar for verkoper
+                            echo '<a href="klantCreateForm.php" class="navLink">Klant</a>'; 
+                            echo '<a href="artikelRead.php" class="navLink">Artikel</a>'; 
+                            echo '<a href="verkoopCreateForm.php" class="navLink">Verkooporders</a>';     
+                            break;
                     default:
                         // Display default navigation bar
                         break;

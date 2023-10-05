@@ -8,7 +8,7 @@ $password = $_POST['password'];
     // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Prepare SQL statement
-    $stmt = $conn->prepare("SELECT * FROM medewerkers WHERE username = :username");
+    $stmt = $conn->prepare("SELECT * FROM klanten WHERE username = :username");
     $stmt->bindParam(':username', $username);
 
     // Execute statement
@@ -20,7 +20,7 @@ $password = $_POST['password'];
     if (!empty($results)) {
         $hashed_password = $results['password'];
 
-        var_dump($hashed_password);
+        // var_dump($hashed_password);
     
         if (password_verify($password, $hashed_password)) {
 
@@ -28,7 +28,7 @@ $password = $_POST['password'];
             // Check if user is logged in
                 require 'function.php';
                 // Display different navigation bar based on user's 'functie'
-                switch($functie) {
+                switch($rights) {
                     case "ceo":
                         // Display navigation bar for afdelingsHoofd
                         header("location: menuAfdelingsHoofd.php");
@@ -61,6 +61,11 @@ $password = $_POST['password'];
                         header("location: menuInkoper.php");
 
                         break;
+                        case NULL:
+                            // Display navigation bar for NULL
+                            header("location: menuKlant.php");
+    
+                            break;
                     default:
                         // Display default navigation bar
                         break;
@@ -74,6 +79,6 @@ $password = $_POST['password'];
         $_SESSION['message'] = "Account doesn't exist. Please try again.";
         header("Location: loginForm.php");
     };
-
-    var_dump($_SESSION['message']);
+    echo 'user right issue 404';
+    // var_dump($_SESSION['message']);
 ?>
