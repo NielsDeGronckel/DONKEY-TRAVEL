@@ -58,7 +58,7 @@ class Tocht {
     public function getTochten() {
         require 'pureConnect.php';
     
-        $sql = $conn->prepare("SELECT ID, Omschrijving, AantalDagen FROM tochten");
+        $sql = $conn->prepare("SELECT ID, Omschrijving, Aantaldagen FROM tochten");
         $sql->execute();
         $tochten = array();
         while ($row = $sql->fetch()) {
@@ -67,6 +67,7 @@ class Tocht {
         return $tochten;    
     }
 
+    //get tocht omschrijving, aantal dagen using tochtId for the boeking read
     public function getTochtWithId($id) {
         require 'pureConnect.php';
     

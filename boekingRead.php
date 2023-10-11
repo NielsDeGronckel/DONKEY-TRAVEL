@@ -15,37 +15,6 @@
             <div class="basCard">
                 <div class="CardContent">
                     <h1>Boekingen inzien</h1>
-                    <p>Zoek klant op ID of Postcode:</p>
-                    <form action="klantSearch.php" method='POST'>
-                        <label for="klantPostcode">Postcode:</label>
-                        <input type="text" id ='klantPostcode' name='klantPostcode'>
-                        <input type="submit">
-
-                    </form>
-                    <form action="klantSearchId.php" method='POST'>
-                        <label for="klantId">ID:</label>
-                        <input type="text" id ='klantId' name='klantId'>
-                        <input type="submit">
-
-                    </form>
-                    <?php
-                        // require 'database.php';
-                        if (isset($_SESSION['result'])) {
-                            $result = $_SESSION['result'];
-                            echo '<div class=""';
-                            echo "Klantnaam: " . $result['klantNaam'] . "<br>";
-                            echo "Email: " . $result['klantEmail'] . "<br>";
-                            echo "Adres: " . $result['klantAdres'] . "<br>";
-                            echo "Postcode: " . $result['klantPostcode'] . "<br>";
-                            echo "Woonplaats: " . $result['klantWoonplaats'] . "<br>";
-                            echo '</div>';
-                            // unset the session variable once it's been displayed
-                            unset($_SESSION['result']);
-                        } else if (isset($_SESSION['searchMsg'])) {
-                            echo $_SESSION['searchMsg'];
-                            unset($_SESSION['searchMsg']);
-                        }
-                    ?>
                     <div class="divRead">
                         <p>Dit zijn alle boeking gegevens uit de database:</p>
                         <div class="read">
@@ -54,17 +23,18 @@
                                 $boekingRead = new Boeking();
                                 $boekingRead->readBoeking($_SESSION['klantId']);
                             ?>
-                            <div class="redirect">
-                                <a href="boekingCreateForm.php">Nieuwe boeking aanmaken:</a>
-                            </div>
-                        </div>
-                        <div id="messagePHP"><?php
+                             <div id="messagePHP"><?php
                             if (isset($_SESSION['message'])) {
                                 echo $_SESSION['message'];
                                 unset($_SESSION['message']);
                             }
                             ?>
                         </div>
+                            <div class="redirect">
+                                <a href="boekingCreateForm.php"><i class='bx bx-plus-circle'></i> Nieuwe boeking aanmaken</a>
+                            </div>
+                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -75,6 +45,15 @@
     <?php require 'footer.php'?>
 </body>
 <style>
+
+    .deleteButton {
+        color: red;
+        background-color: transparent;
+    }
+
+    .updateButton {
+        background-color: transparent;
+    }
     
 input {
     margin-bottom: 5px;
@@ -84,6 +63,13 @@ input {
     justify-content: center;
     border-radius: 5px;
 
+}
+.redirect a:hover {
+    color: black;
+}
+
+.redirect a {
+    font-weight: bold;
 }
 
 #messagePHP {
