@@ -54,7 +54,26 @@ class Klant {
     }
     
     //CRUD functies
+    // Retrieves the userId from the database based on the provided email and stores it in a session variable
+    public function getKlantIdSession($qqleq) {
+        // echo 'Username: ' . $qqleq . '<br>';
+        // echo '<br>';
+        require_once 'pureConnect.php';
+        $sql = $conn->prepare('SELECT ID FROM klanten WHERE username = :username');
+        $sql->bindParam(':username', $qqleq);
+        // $sql->execute([":username" => $pusername]);
+        $sql->execute();
+        // Fetch the result of the query
+        $row = $sql->fetch(PDO::FETCH_ASSOC);
+        // echo "<pre> Row: " . print_r($row, true) . "</pre>";
 
+        if ($row) {
+            return $row['ID'];
+        } else {
+            return null; // Return null when Klant ID is not found
+        }
+    }
+    
     //create new klant
     public function createKlant() {
         require 'database.php';
