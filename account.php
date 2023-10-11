@@ -2,7 +2,7 @@
 require 'database.php';
 
 require 'function.php';
-switch($functie) {
+switch($rights) {
     case "afdelingsHoofd":
         header("location: menuAfdelingsHoofd.php");
         break;
@@ -25,6 +25,10 @@ switch($functie) {
         header("location: menuInkoper.php");
 
         break;
+    case NULL:
+            header("location: menuKlant.php");
+    
+            break;
     default:
         break;
 

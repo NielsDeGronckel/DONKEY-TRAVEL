@@ -21,6 +21,21 @@
 
                     // Display different navigation bar based on user's 'functie'
                     switch($rights) {
+                        case "admin":
+                            echo '<a href="registerForm.php" class="navLink">Register</a>'; 
+                            echo '<div class="dropdown">';
+                            echo '<button class="dropbtn">All</button>';
+                            echo '<div class="dropdown-content">';
+                            echo '<a href="klantRead.php" class="navLink">Klant</a>'; 
+                            echo '<a href="artikelRead.php" class="navLink">Artikel</a>'; 
+                            echo '<a href="levRead.php" class="navLink">Leverancier</a>'; 
+                            echo '<a href="inkoopRead.php" class="navLink">Inkooporders</a>'; 
+                            echo '<a href="verkooporderRead.php" class="navLink">Verkooporders</a>'; 
+                            echo '<a href="menuBezorger.php" class="navLink">Bezorger</a>'; 
+                            echo '</div>';
+                            echo '</div>';
+                            break;
+
                         case "ceo":
                             // Display navigation bar for afdelingsHoofd
                             echo '<a href="registerForm.php" class="navLink">Register</a>'; 
@@ -95,13 +110,21 @@
                         echo '<a href="artVoorraad.php" class="navLink">Artikel Voorraad</a>'; 
                         echo '</div>';
                         echo '</div>'; 
-                        
-
-
-
+                    
                         break;
+                        case NULL:
+                            // Display navigation bar for klant
+                            echo '<a href="menuKlant.php" class="navLink">Dashboard</a>'; 
+                            echo '<div class="dropdown">';
+                            echo '<button class="dropbtn">Boekingen</button>';
+                            echo '<div class="dropdown-content">';
+                            echo '<a href="boekingCreateForm.php" class="navLink">Aanvragen</a>'; 
+                            echo '<a href="boekingRead.php" class="navLink">Inzien</a>'; 
+                            echo '</div>';
+                            echo '</div>';     
+                            break;
                         case "klant":
-                            // Display navigation bar for verkoper
+                            // Display navigation bar for klant
                             echo '<a href="klantCreateForm.php" class="navLink">Klant</a>'; 
                             echo '<a href="artikelRead.php" class="navLink">Artikel</a>'; 
                             echo '<a href="verkoopCreateForm.php" class="navLink">Verkooporders</a>';     
