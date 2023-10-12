@@ -112,6 +112,7 @@ button:hover {
     padding: 10px;
     width: 850px;
     max-height: 500px;
+    min-height: 300px;
     height: 100%;
     margin-top: 100px;
     margin-bottom: 100px;
@@ -119,6 +120,16 @@ button:hover {
     background-color: rgb(9, 116, 39);
     box-shadow: 10px 10px 50px rgb(0, 0, 0);
     overflow: none;
+}
+.redirect a:hover {
+  color: black;
+  background-color: white;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.redirect a {
+  font-weight: bold;
 }
 .accountItems {
     display: flex;

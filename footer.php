@@ -1,7 +1,7 @@
 <footer>
     <div class="footerContainer">
         <div class="contactFooter">
-            <h5>Bij klachten stuur gerust een email naar <a href="mailto:donkey@costumerservice.nl">bas@costumerservice.nl</a><br></h5>
+            <h5>Bij klachten stuur gerust contact met ons opnemen <a href="contact.php">Contact</a> <br></h5>
         </div> 
     </div>
 </footer>

@@ -47,8 +47,8 @@
                                 <input type="submit" name="create" value="Create Boeking" class="registerClass">
                             </div>
                         </form> 
-                        <div class="question">
-                            <p><a href="boekingRead.php">Boekingen inzien</a> </p>
+                        <div class="redirect">
+                            <p><a href="boekingRead.php"><i class='bx bx-message-alt-detail'></i> Boekingen inzien</a> </p>
                         </div>
                     </div>
                 </div>
