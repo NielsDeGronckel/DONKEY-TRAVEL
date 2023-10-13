@@ -23,12 +23,33 @@ $password = $_POST['password'];
         // var_dump($hashed_password);
     
         if (password_verify($password, $hashed_password)) {
-
+            // $username = 'rando';
             $_SESSION['username'] = $username;
+            require_once 'Classes/Klant.php';
+            
+            $klantIdSession = new Klant();
+            $klantId = $klantIdSession->getKlantIdSession($_SESSION['username']);
+            // echo "<pre> test " . print_r($klantId, true) . "</pre>";
+                if ($klantId !== null) {
+                $_SESSION['klantId'] = $klantId;
+                echo 'Test::::', $_SESSION['klantId'];
+            } else {
+                echo 'Error: Klant ID not found';
+            }
+            // require_once 'Classes/Klant.php';
+            // $klantIdSession = new Klant();
+            // $_SESSION['klantId'] = $klantIdSession->getKlantIdSession($username);
+
+
+
             // Check if user is logged in
                 require 'function.php';
                 // Display different navigation bar based on user's 'functie'
                 switch($rights) {
+                    case "admin":
+                        // Display navigation bar for afdelingsHoofd
+                        header("location: menuAfdelingsHoofd.php");
+                        break;
                     case "ceo":
                         // Display navigation bar for afdelingsHoofd
                         header("location: menuAfdelingsHoofd.php");
