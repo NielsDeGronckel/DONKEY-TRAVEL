@@ -1,111 +1,175 @@
 <?php
-//Lukas Sliva
-//16/03/2023
+//Lukas Sliva/Zakaria Yekhlef
+//13/10/2023
 
-class Klant {
-    //properties
-    protected $klantNaam;
-    protected $klantEmail;
-    protected $klantAdres;
-    protected $klantPostcode;
-    protected $klantWoonplaats;
 
-    //methoden -functies
+
+
+class Klant
+{
+    // properties
+    protected $username;
+    protected $email;
+    protected $telefoon;
+    protected $password;
+    protected $rights;
+    protected $changed;
+
     // constructor
-    function __construct($klantNaam=NULL, $klantEmail=NULL, $klantAdres=NULL, $klantPostcode=NULL, $klantWoonplaats=NULL) {
-        $this->klantNaam = $klantNaam;
-        $this->klantEmail = $klantEmail;
-        $this->klantAdres = $klantAdres;
-        $this->klantPostcode = $klantPostcode;
-        $this->klantWoonplaats = $klantWoonplaats;
+    function __construct($username = NULL, $email = NULL, $telefoon = NULL, $password = NULL, $rights = NULL, $changed = NULL)
+    {
+        $this->username = $username;
+        $this->email = $email;
+        $this->telefoon = $telefoon;
+        $this->password = $password;
+        $this->rights = $rights;
+        $this->changed = $changed;
     }
 
-    // setters
-    function set_klantNaam($klantNaam) {
-        $this->klantNaam = $klantNaam;
+    // other methods...
+
+    // create new klant
+    public function createKlant()
+    {
+        require 'database.php';
+        $username = $this->get_username();
+        $email = $this->get_email();
+        $telefoon = $this->get_telefoon();
+        $password = $this->get_password();
+        $rights = $this->get_rights();
+        $changed = $this->get_changed();
+
+        // statement maken voor invoer in de tabel
+        $sql = $conn->prepare('INSERT INTO klanten (username, email, telefoon, password, rights, changed) VALUES (:username, :email, :telefoon, :password, :rights, :changed)');
+
+        // Variabelen in de statement zetten
+        $sql->bindParam(':username', $username);
+        $sql->bindParam(':email', $email);
+        $sql->bindParam(':telefoon', $telefoon);
+        $sql->bindParam(':password', $password);
+        $sql->bindParam(':rights', $rights);
+        $sql->bindParam(':changed', $changed);
+
+        $sql->execute();
+
+        // melding
+        $_SESSION['message'] = "Klant " . $username . " is toegevoegd! <br>";
+        header("Location: klantRead.php");
     }
-    function set_klantEmail($klantEmail) {
-        $this->klantEmail = $klantEmail;
+
+    // other methods...
+
+    // getters for new properties
+    function get_username()
+    {
+        return $this->username;
     }
-    function set_klantAdres($klantAdres) {
-        $this->klantAdres = $klantAdres;
+
+    function get_email()
+    {
+        return $this->email;
     }
-    function set_klantPostcode($klantPostcode) {
-        $this->klantPostcode = $klantPostcode;
+
+    function get_telefoon()
+    {
+        return $this->telefoon;
     }
-    function set_klantWoonplaats($klantWoonplaats) {
-        $this->klantWoonplaats = $klantWoonplaats;
+
+    function get_password()
+    {
+        return $this->password;
     }
-    // getter
-    function get_klantNaam() {
-        return $this->klantNaam;
+
+    function get_rights()
+    {
+        return $this->rights;
     }
-    function get_klantEmail() {
-        return $this->klantEmail;
+
+    function get_changed()
+    {
+        return $this->changed;
     }
-    function get_klantAdres() {
-        return $this->klantAdres;
+
+
+    public function getKlantIdSession($qqleq) {
+        // echo 'Username: ' . $qqleq . '<br>';
+        // echo '<br>';
+        require_once 'pureConnect.php';
+        $sql = $conn->prepare('SELECT ID FROM klanten WHERE username = :username');
+        $sql->bindParam(':username', $qqleq);
+        // $sql->execute([":username" => $pusername]);
+        $sql->execute();
+        // Fetch the result of the query
+        $row = $sql->fetch(PDO::FETCH_ASSOC);
+        // echo "<pre> Row: " . print_r($row, true) . "</pre>";
+
+        if ($row) {
+            return $row['ID'];
+        } else {
+            return null; // Return null when Klant ID is not found
+        }
     }
-    function get_klantPostcode() {
-        return $this->klantPostcode;
-    }
-    function get_klantWoonplaats() {
-        return $this->klantWoonplaats;
-    }
-    
-    //CRUD functies
 
     //create new klant
-    public function createKlant() {
-        require 'database.php';
-        $klantNaam = $this->get_klantNaam();
-        $klantEmail = $this->get_klantEmail();
-        $klantAdres = $this->get_klantAdres();
-        $klantPostcode = $this->get_klantPostcode();
-        $klantWoonplaats = $this->get_klantWoonplaats();
-    
-        //statement maken voor invoer in de tabel
-        $sql = $conn->prepare('INSERT INTO klanten (klantNaam, klantEmail, klantAdres, klantPostcode, klantWoonplaats) VALUES (:klantNaam, :klantEmail, :klantAdres, :klantPostcode, :klantWoonplaats)');
-    
-        //Variabelen in de statement zetten
-        $sql->bindParam(':klantNaam', $klantNaam);
-        $sql->bindParam(':klantEmail', $klantEmail);
-        $sql->bindParam(':klantAdres', $klantAdres);
-        $sql->bindParam(':klantPostcode', $klantPostcode);
-        $sql->bindParam(':klantWoonplaats', $klantWoonplaats);
-    
-        $sql->execute();
-    
-        //melding
-        $_SESSION['message'] = "Klant " . $klantNaam . " is toegevoegd! <br>";
-        header("Location: klantRead.php");
-        
-    }
+//    public function createKlant() {
+//        require 'database.php';
+//        $username = $this->get_klantNaam();
+//        $email = $this->get_klantEmail();
+//        $telefoon = $this->get_telefoon();
+//        $rights = $this->get_rights();
+//        $changed = $this->get_changed();
+//
+//        //statement maken voor invoer in de tabel
+//        $sql = $conn->prepare('INSERT INTO klanten (klantNaam, klantEmail, klantAdres, klantPostcode, klantWoonplaats) VALUES (:klantNaam, :klantEmail, :klantAdres, :klantPostcode, :klantWoonplaats)');
+//
+//        //Variabelen in de statement zetten
+//        $sql->bindParam(':klantNaam', $klantNaam);
+//        $sql->bindParam(':klantEmail', $klantEmail);
+//        $sql->bindParam(':klantAdres', $klantAdres);
+//        $sql->bindParam(':klantPostcode', $klantPostcode);
+//        $sql->bindParam(':klantWoonplaats', $klantWoonplaats);
+//
+//        $sql->execute();
+//
+//        //melding
+//        $_SESSION['message'] = "Klant " . $klantNaam . " is toegevoegd! <br>";
+//        header("Location: klantRead.php");
+//
+//    }
 
-    //read klant and give delete/update buttons with the ID    
+    //read klant and give delete/update buttons with the ID
     public function readKlant() {
         require 'pureConnect.php';
         $sql = $conn->prepare('SELECT * FROM klanten');
         $sql->execute();
-    
-        foreach($sql as $klant) {
-            $klantObject = new Klant($klant['klantNaam'], $klant['klantEmail'], $klant['klantAdres'], $klant['klantPostcode'], $klant['klantWoonplaats']);
+
+        foreach ($sql as $klant) {
+            $klantObject = new Klant($klant['username'], $klant['email'], $klant['telefoon'], $klant['password'], $klant['rights'], $klant['changed']);
             echo '<br>';
             echo '<div class="readList">';
-            echo '<a href="klantDelete.php?action=delete&klantId=' . $klant['klantId'] . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this klant?\')">Delete</a>';            
-            echo '<a href="klantUpdateForm.php?action=update&klantId=' . $klant['klantId'] . '"class="updateButton">Update</a>';
-            
+            echo '<a href="klantDelete.php?action=delete&klantId=' . $klant['ID'] . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this klant?\')">Delete</a>';
+            echo '<a href="klantUpdateForm.php?action=update&klantId=' . $klant['ID'] . '" class="updateButton">Update</a>';
+
             // echo $klantObject->klantId . ' - ';
-            echo $klantObject->klantNaam . ' - ';
-            echo $klantObject->klantEmail . ' - ';
-            echo $klantObject->klantAdres . ' - ';
-            echo $klantObject->klantPostcode . ' - ';
-            echo $klantObject->klantWoonplaats . ' - ';
+            echo $klantObject->username . ' - ';
+            echo $klantObject->email . ' - ';
+            echo $klantObject->telefoon . ' - ';
+            echo $klantObject->password . ' - ';
+            echo $klantObject->rights . ' - ';
+            echo $klantObject->changed . ' - ';
             echo '</div>';
             echo '<br>';
         }
-  
     }
+
+    public function readAccount($userId) {
+
+    }
+
+
+
+
+
 
     //delete klant using klant ID
     public function deleteKlant($klantId) {
@@ -113,9 +177,9 @@ class Klant {
         $sql = $conn->prepare('DELETE FROM klanten WHERE klantId = :klantId');
         $sql->bindParam(':klantId', $klantId);
         $sql->execute();
-    
+
         //melding
-        $_SESSION['message'] = 'Klant ' . $klantNaam . ' is verwijderd. <br>';
+        $_SESSION['message'] = 'Klant ' . $username . ' is verwijderd. <br>';
         header("Location: klantRead.php");
     }
 
@@ -125,7 +189,7 @@ class Klant {
         $sql = $conn->prepare('SELECT * FROM klanten WHERE klantId = :klantId');
         $sql->bindParam(':klantId', $klantId);
         $sql->execute();
-    
+
         $klant = $sql->fetch();
         return $klant;
     }
@@ -175,9 +239,9 @@ class Klant {
             //redirect to the menu and give the error message
             header("Location: menuBezorger.php");
             $_SESSION['searchMsg'] = "No result found for this Klant.";
-    
+
         }
-    
+
     }
 
     //search klant using klant postcode
@@ -186,7 +250,7 @@ class Klant {
         $sql = $conn->prepare('SELECT * FROM klanten WHERE klantPostcode = :klantPostcode');
         $sql->bindParam(':klantPostcode', $klantPostcode);
         $sql->execute();
-    
+
         $klant = $sql->fetch();
         if ($klant) {
             $result = array();
@@ -214,7 +278,7 @@ class Klant {
         $sql = $conn->prepare('SELECT * FROM klanten WHERE klantId = :klantId');
         $sql->bindParam(':klantId', $klantId);
         $sql->execute();
-    
+
         $klant = $sql->fetch();
         if ($klant) {
             $result = array();
@@ -247,10 +311,14 @@ class Klant {
         $sql->bindParam(':klantWoonplaats', $klantWoonplaats);
 
         $sql->execute();
-    
+
         $_SESSION['message'] = 'Klant ' . $klantNaam . ' is bijgewerkt <br>';
         header("Location: klantRead.php");
     }
 }
+
+?>
+}
+
 
 ?>

@@ -29,30 +29,33 @@
 
                     </form>
                     <?php
-                        // require 'database.php';
-                        if (isset($_SESSION['result'])) {
-                            $result = $_SESSION['result'];
-                            echo '<div class=""';
-                            echo "Klantnaam: " . $result['klantNaam'] . "<br>";
-                            echo "Email: " . $result['klantEmail'] . "<br>";
-                            echo "Adres: " . $result['klantAdres'] . "<br>";
-                            echo "Postcode: " . $result['klantPostcode'] . "<br>";
-                            echo "Woonplaats: " . $result['klantWoonplaats'] . "<br>";
-                            echo '</div>';
-                            // unset the session variable once it's been displayed
-                            unset($_SESSION['result']);
-                        } else if (isset($_SESSION['searchMsg'])) {
-                            echo $_SESSION['searchMsg'];
-                            unset($_SESSION['searchMsg']);
-                        }
+                    // require 'database.php';
+                    if (isset($_SESSION['result'])) {
+                        $result = $_SESSION['result'];
+                        echo '<div class=""';
+                        echo "Klantnaam: " . $result['username'] . "<br>"; // Update to 'username'
+                        echo "Email: " . $result['email'] . "<br>"; // Update to 'email'
+                        echo "telefoon: " . $result['telefoon'] . "<br>"; // Update to the appropriate property
+                        echo "password: " . $result['password'] . "<br>"; // Update to the appropriate property
+                        echo "rights: " . $result['rights'] . "<br>"; // Update to the appropriate property
+                        echo "changed: " . $result['changed'] . "<br>"; // Update to the appropriate property
+                        echo '</div>';
+                        // unset the session variable once it's been displayed
+                        unset($_SESSION['result']);
+                    } else if (isset($_SESSION['searchMsg'])) {
+                        echo $_SESSION['searchMsg'];
+                        unset($_SESSION['searchMsg']);
+                    }
                     ?>
+
+
                     <div class="divRead">
                         <p>Dit zijn alle klant gegevens uit de database:</p>
                         <div class="read">
-                            <?php 
+                            <?php
                                 require 'Klant.php';
-                                $klant1 = new Klant();
-                                $klant1->readKlant();
+                                $klanten = new Klant();
+                                $klanten->ReadKlant();
                             ?>
                             <div class="redirect">
                                 <a href="klantCreateForm.php">Create klant</a>
