@@ -5,9 +5,12 @@ body {
     font-family: 'Montserrat', sans-serif;
 
 }
-button:hover {
+ * {
+  scroll-behavior: smooth;
+ }
+/* button:hover {
     background-color: red;
-}
+} */
 .content {
     padding: 10px;
     margin: 10px;

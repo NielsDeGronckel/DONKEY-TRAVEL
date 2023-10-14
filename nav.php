@@ -12,7 +12,7 @@
     <div class="navContainer">
         <div> <a href="index.php" class="navLink">Home</a>
             <?php
-                require 'database.php';
+                require 'database/database.php';
 
                 // Check if user is logged in
                 if(isset($_SESSION['username'])) {
@@ -32,6 +32,14 @@
                             echo '<a href="inkoopRead.php" class="navLink">Inkooporders</a>'; 
                             echo '<a href="verkooporderRead.php" class="navLink">Verkooporders</a>'; 
                             echo '<a href="menuBezorger.php" class="navLink">Bezorger</a>'; 
+                            echo '</div>';
+                            echo '</div>';
+                            echo '<div class="dropdown">';
+                            echo '<button class="dropbtn">Admin</button>';
+                            echo '<div class="dropdown-content">';
+                            echo '<a href="adminTableBoekingen.php" class="navLink">Boekingen</a>'; 
+                            echo '<a href="adminTableTochten.php" class="navLink">Tochten</a>'; 
+                            echo '<a href="adminTableKlanten.php" class="navLink">Klanten</a>'; 
                             echo '</div>';
                             echo '</div>';
                             break;

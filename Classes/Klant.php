@@ -1,6 +1,5 @@
 <?php
 //Lukas Sliva
-//16/03/2023
 
 class Klant {
     //properties
@@ -58,7 +57,7 @@ class Klant {
     public function getKlantIdSession($qqleq) {
         // echo 'Username: ' . $qqleq . '<br>';
         // echo '<br>';
-        require_once 'pureConnect.php';
+        require_once 'database/pureConnect.php';
         $sql = $conn->prepare('SELECT ID FROM klanten WHERE username = :username');
         $sql->bindParam(':username', $qqleq);
         // $sql->execute([":username" => $pusername]);
@@ -76,7 +75,7 @@ class Klant {
     
     //create new klant
     public function createKlant() {
-        require 'database.php';
+        require 'database/pureConnect.php';
         $klantNaam = $this->get_klantNaam();
         $klantEmail = $this->get_klantEmail();
         $klantAdres = $this->get_klantAdres();
@@ -103,7 +102,7 @@ class Klant {
 
     //read klant and give delete/update buttons with the ID    
     public function readKlant() {
-        require 'pureConnect.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('SELECT * FROM klanten');
         $sql->execute();
     
@@ -128,7 +127,7 @@ class Klant {
 
     //delete klant using klant ID
     public function deleteKlant($klantId) {
-        require 'database.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('DELETE FROM klanten WHERE klantId = :klantId');
         $sql->bindParam(':klantId', $klantId);
         $sql->execute();
@@ -140,7 +139,7 @@ class Klant {
 
     //find klant using klant Id for the update form
     public function findKlant($klantId) {
-        require 'pureConnect.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('SELECT * FROM klanten WHERE klantId = :klantId');
         $sql->bindParam(':klantId', $klantId);
         $sql->execute();
@@ -151,7 +150,7 @@ class Klant {
 
     //get the klant naam and ID for the option values for the verkoop order create/update
     public function getKlanten() {
-        require 'pureConnect.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('SELECT klantId, klantNaam FROM klanten');
         $sql->execute();
 
@@ -164,7 +163,7 @@ class Klant {
 
     //search klant using klant ID
     public function searchBezorger($klantId) {
-        require 'database.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('SELECT klanten.klantId, klantNaam, klantEmail, klantAdres, klantPostcode, klantWoonplaats, verkOrdId, verkOrdStatus, verkOrdDatum, artId
         FROM klanten
         JOIN verkooporders ON klanten.klantId = verkooporders.klantId
@@ -201,7 +200,7 @@ class Klant {
 
     //search klant using klant postcode
     public function searchKlant($klantPostcode) {
-        require 'database.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('SELECT * FROM klanten WHERE klantPostcode = :klantPostcode');
         $sql->bindParam(':klantPostcode', $klantPostcode);
         $sql->execute();
@@ -229,7 +228,7 @@ class Klant {
     //search klant using klant ID
 
     public function searchKlantId($klantId) {
-        require 'database.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('SELECT * FROM klanten WHERE klantId = :klantId');
         $sql->bindParam(':klantId', $klantId);
         $sql->execute();
@@ -256,7 +255,7 @@ class Klant {
 
     //Update klant using the klant ID
     public function updateKlant($klantId, $klantNaam, $klantEmail, $klantAdres, $klantPostcode, $klantWoonplaats) {
-        require 'database.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('UPDATE klanten SET klantNaam = :klantNaam, klantEmail = :klantEmail, klantAdres = :klantAdres, klantPostcode = :klantPostcode, klantWoonplaats = :klantWoonplaats WHERE klantId = :klantId');
         $sql->bindParam(':klantId', $klantId);
         $sql->bindParam(':klantNaam', $klantNaam);

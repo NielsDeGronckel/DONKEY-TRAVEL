@@ -56,7 +56,7 @@ class Tocht {
 
     //get the tochten ID, omschrijving and dagen for the option values in boeking create/update
     public function getTochten() {
-        require 'pureConnect.php';
+        require 'database/pureConnect.php';
     
         $sql = $conn->prepare("SELECT ID, Omschrijving, Aantaldagen FROM tochten");
         $sql->execute();
@@ -69,7 +69,7 @@ class Tocht {
 
     //get tocht omschrijving, aantal dagen using tochtId for the boeking read
     public function getTochtWithId($id) {
-        require 'pureConnect.php';
+        require 'database/pureConnect.php';
     
         $sql = $conn->prepare("SELECT Omschrijving, Aantaldagen FROM tochten WHERE ID = :id");
         $sql->bindParam(':id', $id);

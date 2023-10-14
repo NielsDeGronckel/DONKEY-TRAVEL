@@ -1,9 +1,10 @@
 <?php
-require 'database.php';
+require 'database/database.php';
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-
+$_SESSION['usernamePost'] = $_POST['username'];
+$_SESSION['passwordPost'] = $_POST['password'];
     // Set PDO error mode to exception
     // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

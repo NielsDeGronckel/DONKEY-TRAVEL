@@ -105,7 +105,7 @@ class Boeking
     // CRUD
 
     public function createBoeking($StartDatum, $FKtochtenID, $FKklantenID) {
-        require 'database.php';
+        require 'database/pureConnect.php';
         
         $sql = $conn->prepare('INSERT INTO boekingen (StartDatum, FKtochtenID, FKklantenID) VALUES (:StartDatum, :FKtochtenID, :FKklantenID)');      
         $sql->bindParam(':StartDatum', $StartDatum);
@@ -121,7 +121,7 @@ class Boeking
     // read boekingen using klantID getting tocht omschrijving and duration
     public function readBoeking($FKklantenID)
     {
-        require "pureConnect.php";
+        require 'database/pureConnect.php';
     
         // statement maken
         $sql = $conn->prepare("SELECT ID, StartDatum, PINCode, FKtochtenID, FKstatussenID, FKtrackerID FROM boekingen WHERE FKklantenID = :FKklantenID");
@@ -184,7 +184,7 @@ class Boeking
 
     // update boeking using ID
     public function updateBoeking($ID, $StartDatum, $FKtochtenID) {
-        require 'pureConnect.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('UPDATE boekingen SET StartDatum = :StartDatum, FKtochtenID = :FKtochtenID WHERE ID = :ID');
         $sql->bindParam(':ID', $ID);
         $sql->bindParam(':StartDatum', $StartDatum);
@@ -198,7 +198,7 @@ class Boeking
 
     //delete boeking using boeking ID
     public function deleteBoeking($ID) {
-        require 'pureConnect.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('DELETE FROM boekingen WHERE ID = :ID');
         $sql->bindParam(':ID', $ID);
         $sql->execute();
@@ -210,7 +210,7 @@ class Boeking
 
      //find boeking using boeking Id for the update form
      public function findBoeking($ID) {
-        require 'pureConnect.php';
+        require 'database/pureConnect.php';
         $sql = $conn->prepare('SELECT * FROM boekingen WHERE ID = :ID');
         $sql->bindParam(':ID', $ID);
         $sql->execute();

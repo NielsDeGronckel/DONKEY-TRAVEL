@@ -1,0 +1,216 @@
+* {
+    /* border: 1; */
+    margin: 0; 
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    color: #faf4f4;
+    list-style: none;
+
+}
+
+input {
+    margin-bottom: 0;
+    width: auto;
+    padding: 2px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* border-radius: 5px; */
+    margin-left: 5%;
+}
+
+.content {
+    margin-top: 50px;
+}
+
+.adminCard {
+    color: white;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    /* justify-content: space-between; */
+    margin: 10px;
+    padding: 10px;
+    width: 1000px;
+    max-height: 500px;
+    min-height: 300px;
+    height: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-radius: 10px;
+    background-color: rgb(9, 116, 39);
+    box-shadow: 10px 10px 50px rgb(0, 0, 0);
+    overflow: none;
+}
+
+.tableContainer {
+    max-height: 450px;
+    max-width: 100%;
+    overflow-y: scroll;
+    /* transition: scroll-behavior 0.5s ease-in-out; */
+    scroll-behavior: smooth;
+    
+}
+
+.tableContainerNon {
+    overflow-y: hidden;
+
+}
+
+td {
+    /* display: flex; */
+    overflow-x: scroll;
+    /* scroll */
+    max-width: 100px;
+    max-height: 20px;
+    height: 10px;
+    padding: 2px;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0);
+    border-radius: 2px;
+}
+td::-webkit-scrollbar-thumb {
+    opacity: 0;
+}
+
+td::-webkit-scrollbar { 
+    opacity: 0;
+}
+
+.adminContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminTable {
+    display: flex;
+    flex-direction: column;
+}
+ /* admin nav */
+ .adminNav {
+    display: flex;
+    flex-direction: column;
+  }
+::-webkit-scrollbar-thumb {
+    background: none;
+}
+
+.parentTable {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.bxs-edit-alt {
+    /* margin-left: 50%; */
+    /* left: 0; */
+}
+.topBorder {
+    font-size: larger;
+    font-weight: bold;
+    /* background-color: red; */
+}
+
+
+/* scroll fixed position */
+
+.parentTable {
+    height: 450px;
+    overflow-y: scroll;
+    min-width: 850px;
+    scroll-behavior: smooth;
+
+  }
+
+  th, .arrowContainer {
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    
+
+  }
+
+  th {
+    font-weight: bold;
+    font-size: large;
+    border: 1px solid black;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0);
+    height: 30px;
+  }
+  tr:has(th) {
+    background-color:rgb(193 66 66 / 0.85);
+    position: sticky;
+    z-index: 2;
+    top: 0;
+    
+  }
+
+  table {
+    /* border-collapse: collapse; */
+    width: 100%;
+  }
+  .bxs-trash {
+    margin-left: 10px;
+  }
+  .bxs-edit-alt:hover {
+    color: green;
+    font-weight: bolder;
+  }
+
+
+  /* update Funct */
+  .editButton {
+    background-color: transparent;
+    cursor: pointer;
+  } 
+
+  .editButton span, .cell, .editButton input {
+    background-color: transparent;
+
+  }
+
+  .editButton button {
+    margin: 2px;
+    padding: 2px;
+    cursor: pointer;
+  }
+
+  .editButton span {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+  .cellSubmitButton, .cellCancelButton { 
+    background: opacity 0.8;
+    border-radius: 5px;
+}
+    .cellSubmitButton:hover { 
+        font-weight: bold;
+    }
+    .cellCancelButton .bx:hover {
+        font-weight: bolder;
+    }
+  .cellInputField {
+    /* color: blue; */
+    font-weight: bolder;
+    font-size: 14px;
+  }
+
+  .cellSubmitButton {
+    color: green;
+  }
+
+  .cellCancelButton .bx {
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .bx-x {
+    /* color: red; */
+  }

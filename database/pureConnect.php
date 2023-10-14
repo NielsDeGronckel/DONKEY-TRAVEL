@@ -1,5 +1,5 @@
 <?php
-// session_start();
+// no session_start();
 
 $host = 'localhost';
 $dbname = 'donkey';
