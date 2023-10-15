@@ -32,6 +32,7 @@ input {
     /* justify-content: space-between; */
     margin: 10px;
     padding: 10px;
+    padding-bottom: 50px;
     width: 1000px;
     max-height: 500px;
     min-height: 300px;
@@ -42,6 +43,8 @@ input {
     background-color: rgb(9, 116, 39);
     box-shadow: 10px 10px 50px rgb(0, 0, 0);
     overflow: none;
+    /* testing z-index compared to dropdown menu */
+    /* z-index: 0; */
 }
 
 .tableContainer {
@@ -50,7 +53,8 @@ input {
     overflow-y: scroll;
     /* transition: scroll-behavior 0.5s ease-in-out; */
     scroll-behavior: smooth;
-    
+    /* z-index: 0; */
+
 }
 
 .tableContainerNon {
@@ -68,6 +72,8 @@ td {
     padding: 2px;
     box-shadow: 1px 1px 2px rgb(0, 0, 0);
     border-radius: 2px;
+    z-index: 1;
+
 }
 td::-webkit-scrollbar-thumb {
     opacity: 0;
@@ -118,16 +124,16 @@ td::-webkit-scrollbar {
 /* scroll fixed position */
 
 .parentTable {
-    height: 450px;
+    max-height: 450px;
     overflow-y: scroll;
     min-width: 850px;
     scroll-behavior: smooth;
 
   }
 
-  th, .arrowContainer {
+  .arrowContainer {
     position: sticky;
-    z-index: 2;
+    z-index: 1;
     top: 0;
     
 
@@ -142,11 +148,18 @@ td::-webkit-scrollbar {
     height: 30px;
   }
   tr:has(th) {
-    background-color:rgb(193 66 66 / 0.85);
+    /* background-color:rgb(193 66 66); */
+    background-color: green;
     position: sticky;
-    z-index: 2;
     top: 0;
-    
+    z-index: 1;
+  }
+
+  tr:has(td) {
+    /* z-index: -1; */
+  }
+  .th {
+    z-index: 0;
   }
 
   table {
@@ -214,3 +227,22 @@ td::-webkit-scrollbar {
   .bx-x {
     /* color: red; */
   }
+
+    /* Chevron arrows */
+    .arrowContainer {
+        margin: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .bxs-chevrons-down, .bxs-chevrons-up{
+        font-size: larger;
+      }
+      .bxs-chevrons-down:hover {
+        padding-bottom: 5px;
+      }
+      .bxs-chevrons-up:hover {
+        padding-top: 5px;
+      }
