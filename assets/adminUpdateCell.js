@@ -9,7 +9,6 @@ function cancelEdit(rowId, fieldName) {
             var cell = document.getElementById('cell-' + rowId + '-' + fieldName);
             cell.innerHTML = currentEditingCell.originalText;
             currentEditingCell = null; // Clear the currentEditingCell
-            console.log("Cancelling editing cell ");
 
         // }
     }
@@ -21,7 +20,6 @@ function cancelEditButton(rowId, fieldName) {
         var cell = document.getElementById('cell-' + rowId + '-' + fieldName);
         cell.innerHTML = currentEditingCell.originalText;
         currentEditingCell = null; // Clear the currentEditingCell
-        console.log("Cancelling with edit button ");
 
     }
 }
@@ -37,7 +35,6 @@ function editCell(rowId, fieldName, tableName, tableId) {
             cancelEdit(currentEditingCell.rowId, currentEditingCell.fieldName);
         }
     }
-    console.log("Trying to edit fieldName: " + fieldName + " which has the id name: " + tableId);
 
     // Get the current cell element
     var cell = document.getElementById('cell-' + rowId + '-' + fieldName);
@@ -51,9 +48,13 @@ function editCell(rowId, fieldName, tableName, tableId) {
 
     // Create an input field and set its attributes
     var inputField = document.createElement('input');
+    inputField.select(); // Automatically select the input text
+
     inputField.type = 'text';
+
     inputField.value = currentEditingCell.originalText; // Set the initial value from the cell
     inputField.className = 'cellInputField';
+
 
     // Create a Submit button
     var submitButton = document.createElement('button');
@@ -114,19 +115,79 @@ function submitUpdateCell(rowId, fieldName, tableName, tableId) {
 
     // Set up a callback function to handle the response
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            // The request was successful, and the server responded with data
-            console.log('rowId: ' + rowId);
-            console.log('fieldName: ' + fieldName);
-            console.log('tableName: ' + tableName);
-            console.log('updatedText: ' + updatedText);
-            console.log('tableId: ' + tableId);
-            console.log(xhr.responseText); // You can handle the response here
-            //reaload page to get the changes from database
-            location.reload();
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                // The request was successful, and the server responded with data
+                console.log('rowId: ' + rowId);
+                console.log('fieldName: ' + fieldName);
+                console.log('tableName: ' + tableName);
+                console.log('updatedText: ' + updatedText);
+                console.log('tableId: ' + tableId);
+                // console.log('Response: ' + xhr.responseText); // You can handle the response here
+                //reaload page to get the changes from the database
+                const capitalizeFirstLetter = str => str.length ? `${str[0].toUpperCase()}${str.slice(1)}` : str;
+                const TableName = capitalizeFirstLetter(tableName);
+                window.location.href = "adminTable" + TableName + "#" + updatedText;
+                location.reload();
+
+
+            } else {
+                // Handle error responses here
+                console.log('Error: ' + xhr.status);
+            }
         }
     };
 
     // Send the FormData object to the server
     xhr.send(formData);
+}
+
+let isRowVisible = false;
+
+document.getElementById('add-row-button').addEventListener('click', function() {
+    const createRow = document.getElementById('trDisplay');
+    if (!isRowVisible) {
+        // Show the row
+        createRow.style.display = 'contents';
+        document.getElementById('add-row-button').innerHTML = "<i class='bx bx-minus-circle'></i>";
+        createRow.classList.add('shown');
+    } else {
+        // Hide the row
+        createRow.style.display = 'none';
+        document.getElementById('add-row-button').innerHTML = "<i class='bx bx-plus-circle'></i>";
+        createRow.classList.remove('shown');
+
+    }
+    isRowVisible = !isRowVisible; // Toggle the button state
+});
+
+document.getElementById('cancel-create-row').addEventListener('click', function(e) {
+    e.preventDefault();
+    const createRow = document.getElementById('trDisplay');
+    createRow.style.display = 'none';
+    document.getElementById('add-row-button').innerHTML = "<i class='bx bx-plus-circle'></i>";
+    isRowVisible = false; // Ensure the state is set to 'hidden'
+});
+
+function createRow(button) {
+    const row = button.closest('tr');
+    
+    // Find the input elements within the row
+    const inputs = row.querySelectorAll('input');
+    
+    // Create a new form element
+    const form = document.createElement('form');
+    form.method = 'post';
+    form.action = 'adminCreate.php';
+    
+    // Append the input elements to the form
+    inputs.forEach(input => {
+        const inputCopy = input.cloneNode(true);
+        form.appendChild(inputCopy);
+    });
+    
+    // Submit the form
+    form.style.display = 'none'; // Hide the form
+    document.body.appendChild(form);
+    form.submit();
 }

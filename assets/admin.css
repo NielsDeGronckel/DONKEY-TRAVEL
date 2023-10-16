@@ -147,6 +147,10 @@ td::-webkit-scrollbar {
     box-shadow: 1px 1px 2px rgb(0, 0, 0);
     height: 30px;
   }
+  .inputId {
+    top: 30px;
+    background-color: green;
+  }
   tr:has(th) {
     /* background-color:rgb(193 66 66); */
     background-color: green;
@@ -161,6 +165,21 @@ td::-webkit-scrollbar {
   .th {
     z-index: 0;
   }
+  #trDisplay {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+    animation: topToBottom 1s linear;
+   }
+   @keyframes topToBottom {
+    0% {
+      transform: translateY(-100%); /* Start at the top */
+    }
+    100% {
+      transform: translateY(0); /* End at the bottom */
+    }
+  }
+  
 
   table {
     /* border-collapse: collapse; */
@@ -169,11 +188,17 @@ td::-webkit-scrollbar {
   .bxs-trash {
     margin-left: 10px;
   }
-  .bxs-edit-alt:hover {
+  .bxs-edit-alt:hover, .greenButton:hover {
     color: green;
-    font-weight: bolder;
   }
+  .bxs-edit-alt:hover {
+    font-weight: bolder;
 
+  }
+  #add-row-button {
+    background: transparent;
+    cursor: pointer;
+  }
 
   /* update Funct */
   .editButton {
@@ -246,3 +271,39 @@ td::-webkit-scrollbar {
       .bxs-chevrons-up:hover {
         padding-top: 5px;
       }
+
+        /* Create new row table generator */
+  td input {
+    background: transparent;
+    width: 30px;
+    overflow: visible;
+  }
+
+/* 
+  .inputWidth {
+    max-width: 10px;
+  } */
+
+  .submitTable {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .submitTable button, .submitTable input{
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .submitTable input:hover, .submitTable button i:hover {
+    color: red;
+  }
+/* nav */
+
+.nav_message {
+  display: flex;
+  flex-direction: column;
+}
+
+#messagePHP {
+  color: white;
+}

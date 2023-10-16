@@ -30,15 +30,16 @@
                         $tableEcho = $tableGenerator->tableRead($tableName);
                         echo $tableEcho;
                     ?>
-                    </div>
-                    <div id="messagePHP"><?php
+                     <div id="messagePHP"><?php
 
                         if (isset($_SESSION['message'])) {
                             echo $_SESSION['message'];
                             unset($_SESSION['message']);
                         }
                         ?>
+                        </div>
                     </div>
+                   
                     <!-- <div class="adminNav">
                         <a href="adminTablePlayers.php">Klanten</a>
                         <a href="adminTableScores.php">Boekingen</a>
