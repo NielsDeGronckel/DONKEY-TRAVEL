@@ -1,6 +1,3 @@
-<!-- Lukas Sliva 08/02/2023 -->
-
-
 
 <nav>
     <div class="logo">
@@ -27,11 +24,7 @@
                             echo '<button class="dropbtn">All</button>';
                             echo '<div class="dropdown-content">';
                             echo '<a href="klantRead" class="navLink">Klant</a>'; 
-                            echo '<a href="artikelRead" class="navLink">Artikel</a>'; 
-                            echo '<a href="levRead" class="navLink">Leverancier</a>'; 
-                            echo '<a href="inkoopRead" class="navLink">Inkooporders</a>'; 
-                            echo '<a href="verkooporderRead" class="navLink">Verkooporders</a>'; 
-                            echo '<a href="menuBezorger" class="navLink">Bezorger</a>'; 
+                            echo '<a href="boekingRead" class="navLink">Boekingen</a>'; 
                             echo '</div>';
                             echo '</div>';
                             echo '<div class="dropdown">';
