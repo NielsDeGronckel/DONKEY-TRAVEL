@@ -13,15 +13,18 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
+<?php 
+session_start();
+if (!$_SESSION['username'] || $_SESSION['username'] !== 'admin'){ 
+            header("Location: restrictedContent");
+        } else {  
+            session_abort();
+?>
 <?php include("nav.php"); ?>
 <main>
     <div class="content">
         <div class="adminContent">
             <div class="adminCard">
-
-                <!-- <h1>Admin</h1> -->
-                <?php if ($_SESSION) {
-                if ($_SESSION['username'] == 'admin') {?>
                 <div class="adminTable">
 
                     <?php
@@ -47,11 +50,6 @@
                         <a href="adminTableRank.php">Status</a>
                     </div> -->
                 </div>
-            <?php
-                }}else {
-                    echo 'Access to this content is restricted. Please sign in or request permission.';
-                }
-            ?>
         </div>
     </div>
 </main>
@@ -65,5 +63,6 @@
 </style>
 <script src="assets/adminUpdateCell.js"></script>
 <script src="assets/main.js"></script>
+<?php } ?>
 </body>
 </html>
