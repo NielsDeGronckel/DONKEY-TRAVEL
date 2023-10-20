@@ -24,15 +24,14 @@
                         <label class="iconField" for="username"><i class='bx bxs-user'></i></label>
                         <input type="text" id="username" name="username" placeholder="Username" value="<?php echo isset($_SESSION['usernamePost']) ? $_SESSION['usernamePost'] : ''; ?>" required>
                         </div>
-                        <p id="usernameMessage"></p>
+                        <span id="usernameMessage"></span>
                         <div class="labelInput">
                         <label class="iconField" for="email"><i class='bx bxs-envelope' ></i></label>
                         <input type="text" id="email" name="email" placeholder="email" value="<?php echo isset($_SESSION['emailPost']) ? $_SESSION['emailPost'] : ''; ?>" required>
                         </div>    
                         <div class="labelInput">
                         <label class="iconField" for="telefoon"><i class='bx bxs-phone'></i></label>
-                        <input type="tel" id="telefoon" name="telefoon" pattern="[0-9]{10}" placeholder="1234567890" value="<?php echo isset($_SESSION['telefoonPost']) ? $_SESSION['telefoonPost'] : ''; ?>" required>
-                        <!-- <small>Enter a 10-digit phone number without spaces or dashes.</small> -->
+                        <input type="tel" id="telefoon" name="telefoon" pattern="[0-9]{10}" max="99999999999" placeholder="1234567890" value="<?php echo isset($_SESSION['telefoonPost']) ? $_SESSION['telefoonPost'] : ''; ?>" required>
                         </div>    
                         <div class="labelInput">
                         <label class="iconField" for="password"><i class='bx bxs-lock-open-alt'></i></label>
@@ -42,8 +41,8 @@
                         <label class="iconField" for="confirm_password"><i class='bx bxs-lock-alt' ></i></label>
                         <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" value="<?php echo isset($_SESSION['confirm_passwordPost']) ? $_SESSION['confirm_passwordPost'] : ''; ?>" required>
                         </div>
-                        <p id="passwordMessage"></p>
-                        <p id="checkboxMessage"></p>
+                        <span id="passwordMessage"></span>
+                        <span id="checkboxMessage"></span>
 
                         <div id="messagePHP"><?php
 
@@ -101,6 +100,12 @@
             color: black; /* Text color for the placeholder */
         }
 
+    /* #usernameMessage { */
+        span {
+        margin: 0;
+        padding: 0;
+        height: 0;
+    }
 
     </style>
     <script>
@@ -112,8 +117,16 @@
         const warningCheckbox = document.getElementById("agreement");
         const password = document.getElementById("password");
         const confirmPassword = document.getElementById("confirm_password");
-        const usernameInput = document.getElementById("username");
         
+        const usernameInput = document.getElementById("username");
+        const emailInput = document.getElementById("email");
+
+        // var usernameCharCount = document.getElementById("username-char-count");
+        // var emailCharCount = document.getElementById("email-char-count");
+
+        usernameInput.addEventListener("input", handleInput(usernameInput, 22));
+        emailInput.addEventListener("input", handleInput(emailInput, 32));
+
         //explained
         const warning = document.getElementById("warning");
         const warningExplained = document.getElementById("warningExplained");
@@ -125,6 +138,32 @@
 
         // Set maximum username length
         var maxUsernameLength = 22;
+        
+        function handleInput(inputField, maxCharacterLimit) {
+            return function() {
+                var currentLength = inputField.value.length;
+
+                if (currentLength > maxCharacterLimit) {
+                inputField.style.color = "red";
+                inputField.value = inputField.value.substring(0, maxCharacterLimit);
+                } else {
+                inputField.style.color = "black";
+                }
+            };
+        }
+
+        var telefoonInput = document.getElementById("telefoon");
+
+        telefoonInput.addEventListener("input", function() {
+        // Remove non-numeric characters
+        telefoonInput.value = telefoonInput.value.replace(/\D/g, "");
+
+        // Limit the input to 11 characters
+        if (telefoonInput.value.length > 11) {
+            telefoonInput.value = telefoonInput.value.slice(0, 11);
+        }
+        });
+
 
         // Add event listener for form submit
         form.addEventListener("submit", function(event) {

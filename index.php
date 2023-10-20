@@ -10,13 +10,22 @@
 </head>
 <body>
     <?php require 'nav.php'?>
-    <div class="content">
+    <main>
+   <div class="content">
         <div class="header">
-            <h1>Hometest</h1>
-            <p>Donkey travel</p>
+        <div class="accountPage">
+            <div class="basCard">
+                <div class="accountItems">            
+                <h1>Home</h1>
+            <p>	                    Donkey Travel is een adventurebedrijf dat ezels met huifkarren verhuurt.
+</p>
             <img src="donkey.jpg" alt="Donkey" style="max-width: 500px; max-height: 400px;">
+                </div>
+            </div>
         </div>
     </div>
+   </main>
+
 
 
     <?php require 'footer.php'?>

@@ -5,6 +5,8 @@ $password = $_POST['password'];
 
 $_SESSION['usernamePost'] = $_POST['username'];
 $_SESSION['passwordPost'] = $_POST['password'];
+
+try {
     // Set PDO error mode to exception
     // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -31,9 +33,9 @@ $_SESSION['passwordPost'] = $_POST['password'];
             $klantIdSession = new Klant();
             $klantId = $klantIdSession->getKlantIdSession($_SESSION['username']);
             // echo "<pre> test " . print_r($klantId, true) . "</pre>";
-                if ($klantId !== null) {
+            if ($klantId !== null) {
                 $_SESSION['klantId'] = $klantId;
-                echo 'Test::::', $_SESSION['klantId'];
+                // echo 'Test::::', $_SESSION['klantId'];
             } else {
                 echo 'Error: Klant ID not found';
             }
@@ -41,10 +43,9 @@ $_SESSION['passwordPost'] = $_POST['password'];
             // $klantIdSession = new Klant();
             // $_SESSION['klantId'] = $klantIdSession->getKlantIdSession($username);
 
-
-
             // Check if user is logged in
-                require 'function.php';
+            require 'function.php';
+
                 // Display different navigation bar based on user's 'functie'
                 switch($rights) {
                     case "admin":
@@ -55,44 +56,12 @@ $_SESSION['passwordPost'] = $_POST['password'];
                         // Display navigation bar for afdelingsHoofd
                         header("location: menuAfdelingsHoofd.php");
                         break;
-                    case "afdelingsHoofd":
-                        // Display navigation bar for afdelingsHoofd
-                        header("location: menuAfdelingsHoofd.php");
-                        break;
-                    case "magazijnMedewerker":
-                        // Display navigation bar for magazijnmedewerker
-                        header("location: menuMagazijnMedewerker.php");
-
-                        break;
-                    case "magazijnMeester":
-                        // Display navigation bar for magazijnMeester
-                        header("location: menuMagazijnMeester.php");
-                        break;
-                    case "bezorger":
-                        // Display navigation bar for bezorger
-                        header("location: menuBezorger.php");
-
-                        break;
-                    case "verkoper":
-                        // Display navigation bar for verkoper
-                        header("location: menuVerkoper.php");
-
-                        break;
-                    case "inkoper":
-                        // Display navigation bar for inkoper
-                        header("location: menuInkoper.php");
-
-                        break;
-                        case NULL:
-                            // Display navigation bar for NULL
-                            header("location: menuKlant.php");
-    
-                            break;
                     default:
                         // Display default navigation bar
+                        header("location: menuKlant.php");
                         break;
-
                 }
+
         } else {
             $_SESSION['message'] = 'Invalid log in credentials. Please try again.';
             header("Location: loginForm.php");
@@ -100,7 +69,13 @@ $_SESSION['passwordPost'] = $_POST['password'];
     } else {
         $_SESSION['message'] = "Account doesn't exist. Please try again.";
         header("Location: loginForm.php");
-    };
-    echo 'user right issue 404';
+    }
     // var_dump($_SESSION['message']);
+} catch (PDOException $e) {
+    // Handle any PDO exceptions here, e.g., log or display the error
+    echo 'PDO Exception: ' . $e->getMessage();
+} catch (Exception $e) {
+    // Handle any other exceptions here, e.g., log or display the error
+    echo 'Exception: ' . $e->getMessage();
+}
 ?>

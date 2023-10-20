@@ -43,12 +43,7 @@
                             echo '<div class="dropdown">';
                             echo '<button class="dropbtn">All</button>';
                             echo '<div class="dropdown-content">';
-                            echo '<a href="klantRead" class="navLink">Klant</a>'; 
-                            echo '<a href="artikelRead" class="navLink">Artikel</a>'; 
-                            echo '<a href="levRead" class="navLink">Leverancier</a>'; 
-                            echo '<a href="inkoopRead" class="navLink">Inkooporders</a>'; 
-                            echo '<a href="verkooporderRead" class="navLink">Verkooporders</a>'; 
-                            echo '<a href="menuBezorger" class="navLink">Bezorger</a>'; 
+                       
                             echo '</div>';
                             echo '</div>';
                             break;
@@ -65,55 +60,7 @@
                             echo '</div>';
                             echo '</div>';
                             break;
-                    case "magazijnMedewerker":
-                        // Display navigation bar for magazijnmedewerker
-                        echo '<a href="artikelSearch" class="navLink">Artikel</a>';
-                        echo '<a href="verkoopordersUpdateForm" class="navLink">Update verkooporders</a>'; 
-                        break;
-                    case "magazijnMeester":
-                        // Display navigation bar for magazijnMeester
-                        echo '<a href="artikelCreateForm" class="navLink">Artikel</a>'; 
-                        break;
-                    case "bezorger":
-                        // Display navigation bar for bezorger
-                        echo '<a href="menuBezorger" class="navLink">Bezorger menu</a>'; 
-
-                        break;
-                    case "verkoper":
-                        // Display navigation bar for verkoper
-                        echo '<a href="klantCreateForm" class="navLink">Klant</a>'; 
-                        echo '<a href="artikelRead" class="navLink">Artikel</a>'; 
-                        echo '<a href="verkoopCreateForm" class="navLink">Verkooporders</a>'; 
-
-
-                        break;
-                    case "inkoper":
-                        // Display navigation bar for inkoper
-                        echo '<div class="dropdown">';
-                        echo '<button class="dropbtn">Inkoop</button>';
-                        echo '<div class="dropdown-content">';
-                        echo '<a href="inkoopCreateForm" class="navLink">Create</a>'; 
-                        echo '<a href="inkoopRead" class="navLink">Read</a>'; 
-                        echo '</div>';
-                        echo '</div>'; 
-                        echo '<div class="dropdown">';
-                        echo '<button class="dropbtn">Leverancier</button>';
-                        echo '<div class="dropdown-content">';
-                        echo '<a href="levCreateForm" class="navLink">Create</a>'; 
-                        echo '<a href="levRead" class="navLink">Read</a>';
-                        echo '</div>';
-                        echo '</div>'; 
-                        echo '<div class="dropdown">';
-                        echo '<button class="dropbtn">Artikel</button>';
-                        echo '<div class="dropdown-content">';
-                        echo '<a href="artikelCreateForm" class="navLink">Create</a>'; 
-                        echo '<a href="artikelRead" class="navLink">Read</a>'; 
-                        echo '<a href="artVoorraad" class="navLink">Artikel Voorraad</a>'; 
-                        echo '</div>';
-                        echo '</div>'; 
-                    
-                        break;
-                        case NULL:
+                        case 'NULL'|| NULL:
                             // Display navigation bar for klant
                             echo '<a href="menuKlant" class="navLink">Dashboard</a>'; 
                             echo '<div class="dropdown">';

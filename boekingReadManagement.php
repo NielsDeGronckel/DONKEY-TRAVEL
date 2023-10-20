@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>Boeking Inzien</title>
+    <title>Boeking Inzien Management Systeem</title>
 </head>
 <body>
     <?php require 'nav.php'?>
@@ -16,21 +16,19 @@
                 <div class="CardContent">
                     <h1>Boekingen inzien</h1>
                     <div class="divRead">
-                        <p>Al uw boekingen:</p>
-                        <div class="readContainer">
-                            <div class="read">
-                                <?php 
-                                    require 'Classes/Boeking.php';
-                                    $boekingRead = new Boeking();
-                                    $boekingRead->readBoekingAdmin($_SESSION['klantId']);
-                                ?>
-                                <div id="messagePHP"><?php
-                                if (isset($_SESSION['message'])) {
-                                    echo $_SESSION['message'];
-                                    unset($_SESSION['message']);
-                                }
-                                ?>
-                            </div>
+                        <p>Dit zijn alle boeking gegevens uit de database:</p>
+                        <div class="read">
+                            <?php 
+                                require 'Classes/Boeking.php';
+                                $boekingRead = new Boeking();
+                                $boekingRead->readBoekingAdmin();
+                            ?>
+                             <div id="messagePHP"><?php
+                            if (isset($_SESSION['message'])) {
+                                echo $_SESSION['message'];
+                                unset($_SESSION['message']);
+                            }
+                            ?>
                         </div>
                             <div class="redirect">
                                 <a href="boekingCreateForm.php"><i class='bx bx-plus-circle'></i> Nieuwe boeking aanmaken</a>

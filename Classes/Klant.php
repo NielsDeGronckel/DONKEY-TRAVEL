@@ -149,17 +149,58 @@ class Klant {
     }
 
     //get the klant naam and ID for the option values for the verkoop order create/update
+    // public function getKlanten() {
+    //     require 'database/pureConnect.php';
+    //     $sql = $conn->prepare('SELECT klantId, klantNaam FROM klanten');
+    //     $sql->execute();
+
+    //     $klanten = array();
+    //     while ($row = $sql->fetch()) {
+    //         $klanten[] = $row;
+    //     }
+    //     return $klanten;
+    // }
+
+    
+     //get tocht omschrijving, aantal dagen using tochtId for the boeking read
+     public function getKlantenWithId($id) {
+        require 'database/pureConnect.php';
+    
+        $sql = $conn->prepare("SELECT username, email, telefoon FROM klanten WHERE ID = :id");
+        $sql->bindParam(':id', $id);
+        $sql->execute();
+        
+        // Fetch a single row
+        $klant = $sql->fetch(PDO::FETCH_ASSOC);
+        // var_dump($tocht);
+        return $klant;
+    }
+    // Get the klanten ID, username, email, and telefoon for the option values in boeking create/update
     public function getKlanten() {
         require 'database/pureConnect.php';
-        $sql = $conn->prepare('SELECT klantId, klantNaam FROM klanten');
+        
+        $sql = $conn->prepare("SELECT ID, username, email, telefoon FROM klanten");
         $sql->execute();
-
         $klanten = array();
         while ($row = $sql->fetch()) {
             $klanten[] = $row;
         }
-        return $klanten;
+        return $klanten;    
     }
+
+    // Get klant details using klant ID for the boeking read
+    public function getKlantWithId($id) {
+        require 'database/pureConnect.php';
+        
+        $sql = $conn->prepare("SELECT username, email, telefoon FROM klanten WHERE ID = :id");
+        $sql->bindParam(':id', $id);
+        $sql->execute();
+        
+        // Fetch a single row
+        $klant = $sql->fetch(PDO::FETCH_ASSOC);
+        return $klant;
+    }
+
 
     //search klant using klant ID
     public function searchBezorger($klantId) {
