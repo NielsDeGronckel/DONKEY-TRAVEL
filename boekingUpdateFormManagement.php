@@ -6,9 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <title>update boeking</title>
+    <title>Update boeking Management systeem</title>
 </head>
 <body>
+<?php 
+session_start();
+if ($_SESSION['rights'] !== 'management' && $_SESSION['rights'] !== 'admin'){ 
+    header("Location: restrictedContent");            
+    } else {  
+        session_abort();
+?>
     <?php 
     require 'nav.php';
     require 'Classes/Boeking.php';
@@ -22,7 +29,7 @@
         <div class="accountPage">
             <div class="basCard">
                 <div class="accountItems">
-                    <h1>Update boeking:</h1>
+                    <h1>Update boeking management systeem:</h1>
                     <div class="accountForm">
                         <?php
                             $klantId = $_SESSION['klantId'];
@@ -128,6 +135,7 @@
 
 
     <?php require 'footer.php'?>
+    <?php } ?>
 </body>
 <style>
     

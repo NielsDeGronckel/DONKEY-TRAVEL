@@ -9,14 +9,20 @@
     <title>Boeking Inzien Management Systeem</title>
 </head>
 <body>
+<?php 
+session_start();
+    if ($_SESSION['rights'] !== 'management' && $_SESSION['rights'] !== 'admin'){ 
+        header("Location: restrictedContent");            
+        } else {  
+            session_abort();
+?>
     <?php require 'nav.php'?>
     <div class="content">
         <div class="accountPage">
             <div class="basCard">
                 <div class="CardContent">
-                    <h1>Boekingen inzien</h1>
+                    <h1>Boekingen Management Systeem:</h1>
                     <div class="divRead">
-                        <p>Dit zijn alle boeking gegevens uit de database:</p>
                         <div class="read">
                             <?php 
                                 require 'Classes/Boeking.php';
@@ -30,9 +36,6 @@
                             }
                             ?>
                         </div>
-                            <div class="redirect">
-                                <a href="boekingCreateForm.php"><i class='bx bx-plus-circle'></i> Nieuwe boeking aanmaken</a>
-                            </div>
                         </div>
                        
                     </div>
@@ -43,6 +46,7 @@
 
 
     <?php require 'footer.php'?>
+    <?php } ?>
 </body>
 <style>
 

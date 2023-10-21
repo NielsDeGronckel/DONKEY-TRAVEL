@@ -24,7 +24,7 @@
                             echo '<button class="dropbtn">All</button>';
                             echo '<div class="dropdown-content">';
                             echo '<a href="klantRead" class="navLink">Klant</a>'; 
-                            echo '<a href="boekingRead" class="navLink">Boekingen</a>'; 
+                            echo '<a href="boekingReadManagement" class="navLink">Boekingen MS</a>'; 
                             echo '</div>';
                             echo '</div>';
                             echo '<div class="dropdown">';
@@ -36,46 +36,29 @@
                             echo '</div>';
                             echo '</div>';
                             break;
-
-                        case "ceo":
-                            // Display navigation bar for afdelingsHoofd
-                            echo '<a href="registerForm" class="navLink">Register</a>'; 
-                            echo '<div class="dropdown">';
-                            echo '<button class="dropbtn">All</button>';
-                            echo '<div class="dropdown-content">';
-                       
-                            echo '</div>';
-                            echo '</div>';
-                            break;
-                        case "afdelingsHoofd":
-                            // Display navigation bar for afdelingsHoofd
+                        case "management":
+                            // echo '<a href="registerForm" class="navLink">Register</a>'; 
                             echo '<div class="dropdown">';
                             echo '<button class="dropbtn">All</button>';
                             echo '<div class="dropdown-content">';
                             echo '<a href="klantRead" class="navLink">Klant</a>'; 
-                            echo '<a href="artikelRead" class="navLink">Artikel</a>'; 
-                            echo '<a href="levRead" class="navLink">Leverancier</a>'; 
-                            echo '<a href="inkoopRead" class="navLink">Inkooporders</a>'; 
-                            echo '<a href="verkooporderRead" class="navLink">Verkooporders</a>'; 
+                            echo '<a href="boekingReadManagement" class="navLink">Boekingen</a>'; 
                             echo '</div>';
                             echo '</div>';
                             break;
                         case 'NULL'|| NULL:
                             // Display navigation bar for klant
+                            echo '<a href="about" class="navLink">About</a>'; 
+                            echo '<a href="contact" class="navLink">Contact</a>'; 
                             echo '<a href="menuKlant" class="navLink">Dashboard</a>'; 
+
                             echo '<div class="dropdown">';
                             echo '<button class="dropbtn">Boekingen</button>';
                             echo '<div class="dropdown-content">';
-                            echo '<a href="boekingCreateForm" class="navLink">Aanvragen</a>'; 
                             echo '<a href="boekingRead" class="navLink">Inzien</a>'; 
+                            echo '<a href="boekingCreateForm" class="navLink">Aanvragen</a>'; 
                             echo '</div>';
                             echo '</div>';     
-                            break;
-                        case "klant":
-                            // Display navigation bar for klant
-                            echo '<a href="klantCreateForm" class="navLink">Klant</a>'; 
-                            echo '<a href="artikelRead" class="navLink">Artikel</a>'; 
-                            echo '<a href="verkoopCreateForm" class="navLink">Verkooporders</a>';     
                             break;
                     default:
                         // Display default navigation bar
