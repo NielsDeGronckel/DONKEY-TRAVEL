@@ -22,7 +22,7 @@
                                 <?php 
                                     require 'Classes/Boeking.php';
                                     $boekingRead = new Boeking();
-                                    $boekingRead->readBoekingAdmin($_SESSION['klantId']);
+                                    $boekingRead->readBoeking($_SESSION['klantId']);
                                 ?>
                                 <div id="messagePHP"><?php
                                 if (isset($_SESSION['message'])) {

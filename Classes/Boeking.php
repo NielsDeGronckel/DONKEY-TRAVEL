@@ -128,8 +128,10 @@ class Boeking
         $sql->bindParam(':FKklantenID', $FKklantenID);
         $sql->execute();
         require 'Classes/Tocht.php';
-    
+        require 'Classes/Status.php';
+
         $newTocht = new Tocht();
+        $statussen = new Status();
         // $s instead of echo
         $s = '<table class="table-auto" border="1">';
         $s .= '<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">';
@@ -145,6 +147,8 @@ class Boeking
         foreach ($sql as $boeking) {
             $FKtochtenID = $boeking['FKtochtenID'];
             $tochtenArray = $newTocht->getTochtWithId($FKtochtenID);
+            $statusIdArray = $statussen->getStatusWithId($boeking['FKstatussenID']);
+            $selectedStatus = $statusIdArray['Status'];
             $numberOfDays = $tochtenArray["Aantaldagen"];
             $startDate = strtotime($boeking['StartDatum']); // Convert the start date to a timestamp
             if ($startDate !== false) {
@@ -170,7 +174,7 @@ class Boeking
             $s .= '<td class="px-6 py-4 text-white bg-slate-400">';
             $s .= '<button type="button" class="readButton">' . $tochtenArray["Omschrijving"] . ' ('. $numberOfDays .' dagen)</button>';
             $s .= '</td>';
-            $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $boeking["FKstatussenID"] . "<br/>" . '</td>';
+            $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $selectedStatus . "<br/>" . '</td>';
             $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $boeking["FKtrackerID"] . "<br/>" . '</td>';
             $s .= '<td><a href="boekingUpdateForm.php?action=update&tbl=boekingen&ID=' . $boeking["ID"] . '" class="updateButton"><i class="bx bxs-edit-alt"></i></a>';
             $s .= '<a href="boekingDelete.php?action=delete&tbl=boekingen&ID=' . $boeking["ID"] . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this row?\')"><i class="bx bxs-trash"></i></a></td>';
@@ -192,9 +196,12 @@ class Boeking
             $sql->execute();
             require 'Classes/Tocht.php';
             require 'Classes/Klant.php';
+            require 'Classes/Status.php';
 
             $newTocht = new Tocht();
             $newKlant = new Klant();
+            $statussen = new Status();
+
             
             // $s instead of echo
             $s = '<table class="table-auto" border="1">';
@@ -216,6 +223,8 @@ class Boeking
                 $tochtenArray = $newTocht->getTochtWithId($FKtochtenID);
                 $numberOfDays = $tochtenArray["Aantaldagen"];
                 $klantenArray = $newKlant->getKlantenWithId($FKklantenID);
+                $statusIdArray = $statussen->getStatusWithId($boeking['FKstatussenID']);
+                $selectedStatus = $statusIdArray['Status'];
                 $startDate = strtotime($boeking['StartDatum']); // Convert the start date to a timestamp
                 if ($startDate !== false) {
                     $endDateTimestamp = strtotime("+$numberOfDays days", $startDate);
@@ -236,7 +245,7 @@ class Boeking
                 $s .= '<tr>';
                 $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $boeking["StartDatum"] . '</td>';
                 $s .= '<td class="px-6 py-4 text-white bg-slate-400">' . $eindDatum . '</td>';
-                $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $boeking["FKstatussenID"] . "<br/>" . '</td>';
+                $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $selectedStatus . "<br/>" . '</td>';
                 $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $boeking["PINCode"] . "<br/>" . '</td>';
                 $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $klantenArray["username"] . "<br/>" . '</td>';
                 $s .= '<td class="px-6 py-4 text-white bg-slate-400">';

@@ -33,6 +33,7 @@
                             echo '<a href="adminTableBoekingen" class="navLink">Boekingen</a>'; 
                             echo '<a href="adminTableTochten" class="navLink">Tochten</a>'; 
                             echo '<a href="adminTableKlanten" class="navLink">Klanten</a>'; 
+                            echo '<a href="adminTableStatussen" class="navLink">Statussen</a>'; 
                             echo '</div>';
                             echo '</div>';
                             break;
