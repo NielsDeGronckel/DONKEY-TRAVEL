@@ -63,7 +63,7 @@ class Table {
      $s .= '<a href="#bottom"><i class="bx bxs-chevrons-down"></i></a>';
      $s .= '</div>'; //close arrowContainer
  
- 
+    // read for column names
      // Initialize an array to store maximum column widths based on data type
      $columnWidths = array_fill(0, $aantalVelden, 0);
       $def = $conn->query("DESCRIBE $tabelnaam");
@@ -79,8 +79,9 @@ class Table {
      $s .= "<th>CMD</th>";
      $s .= "</tr>";
      
- 
      $s .= '<span id="top"></span>';
+
+    //create new row field
      $s .= "<tr id='trDisplay'>";
  
      $s .= '<input type="hidden" name="table_name" value="' . $tabelnaam . '">
@@ -102,20 +103,20 @@ class Table {
  
      $s .= "</tr>";  
     
- 
+    // actual read for the data
      $def = $conn->query("SELECT * FROM $tabelnaam");
  
  
      while ($row = $def->fetch(PDO::FETCH_NUM)) {
          for ($teller = 0; $teller < $aantalVelden; $teller++) {
-             $row[$teller] = $row[$teller] ? $row[$teller] : '-'; // Use '-' when value is empty
-         // $columnId = $columnName[0];
+            $row[$teller] = ($row[$teller] !== null) ? ($row[$teller] === '0' ? '0' : $row[$teller]) : 'NULL';
+            // $columnId = $columnName[0];
          $s .= "<td>
          <button id='$row[$teller]' onclick='editCell({$row[0]}, \"$columnNames[$teller]\", \"$tabelnaam\",\"$columnNames[0]\")' class='editButton' data-columnname='$columnNames[$teller]' data-tablename='$tabelnaam' data-tableid='$columnNames[0]'>
          <span id='cell-{$row[0]}-$columnNames[$teller]'>$row[$teller]</span></button>
      </td>";
          }
-         $s .= '<td><a href="delete.php?action=delete&tbl=' . $tabelnaam . '&id=' . $row[0] . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this row?\')"><i class="bx bxs-trash"></i></a></td>';
+         $s .= '<td><a href="adminDelete.php?action=delete&tbl=' . $tabelnaam . '&id=' . $row[0] . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this row?\')"><i class="bx bxs-trash"></i></a></td>';
          $s .= "</tr>";  
      }
  

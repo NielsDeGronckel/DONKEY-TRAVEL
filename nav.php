@@ -21,7 +21,7 @@
                         case "admin":
                             echo '<a href="registerForm" class="navLink">Register</a>'; 
                             echo '<div class="dropdown">';
-                            echo '<button class="dropbtn">All</button>';
+                            echo '<button class="dropbtn">Management Systeem</button>';
                             echo '<div class="dropdown-content">';
                             echo '<a href="klantRead" class="navLink">Klant</a>'; 
                             echo '<a href="boekingReadManagement" class="navLink">Boekingen MS</a>'; 
@@ -40,7 +40,7 @@
                         case "management":
                             // echo '<a href="registerForm" class="navLink">Register</a>'; 
                             echo '<div class="dropdown">';
-                            echo '<button class="dropbtn">All</button>';
+                            echo '<button class="dropbtn">Management Systeem</button>';
                             echo '<div class="dropdown-content">';
                             echo '<a href="klantRead" class="navLink">Klant</a>'; 
                             echo '<a href="boekingReadManagement" class="navLink">Boekingen</a>'; 

@@ -150,6 +150,7 @@ td::-webkit-scrollbar {
   .inputId {
     top: 30px;
     background-color: green;
+    position: sticky;
   }
   tr:has(th) {
     /* background-color:rgb(193 66 66); */
