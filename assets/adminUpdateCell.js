@@ -127,7 +127,7 @@ function submitUpdateCell(rowId, fieldName, tableName, tableId) {
                 //reaload page to get the changes from the database
                 const capitalizeFirstLetter = str => str.length ? `${str[0].toUpperCase()}${str.slice(1)}` : str;
                 const TableName = capitalizeFirstLetter(tableName);
-                window.location.href = "adminTable" + TableName + "#" + updatedText;
+                window.location.href = "adminTable" + TableName + "#cell-" + rowId + "-" + fieldName;
                 location.reload();
 
 
