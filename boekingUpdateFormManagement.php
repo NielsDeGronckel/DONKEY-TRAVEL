@@ -71,10 +71,10 @@ if ($_SESSION['rights'] !== 'management' && $_SESSION['rights'] !== 'admin'){
                                         $statusIdArray = $statussen->getStatusWithId($Boeking['FKstatussenID']);
                                         $selectedStatus = $statusIdArray['Status'];
                                    ?>
-                                    <option value="Aanvraag" <?php echo ($statusIdArray['Status'] === 'Aanvraag') ? 'selected' : ''; ?>>Aanvraag</option>
-                                    <option value="Offerte" <?php echo ($statusIdArray['Status'] === 'Offerte') ? 'selected' : ''; ?>>Offerte</option>
-                                    <option value="Definitief" <?php echo ($statusIdArray['Status'] === 'Definitief') ? 'selected' : ''; ?>>Definitief</option>
-                                    <option value="Archief" <?php echo ($statusIdArray['Status'] === 'Archief') ? 'selected' : ''; ?>>Archief</option>
+                                    <option value="1" <?php echo ($statusIdArray['Status'] === 'Aanvraag') ? 'selected' : ''; ?>>Aanvraag</option>
+                                    <option value="2" <?php echo ($statusIdArray['Status'] === 'Offerte') ? 'selected' : ''; ?>>Offerte</option>
+                                    <option value="3" <?php echo ($statusIdArray['Status'] === 'Definitief') ? 'selected' : ''; ?>>Definitief</option>
+                                    <option value="4" <?php echo ($statusIdArray['Status'] === 'Archief') ? 'selected' : ''; ?>>Archief</option>
                                 </select>
                                 <br>
 
