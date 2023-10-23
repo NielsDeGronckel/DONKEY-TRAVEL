@@ -1,5 +1,5 @@
 <?php
-require 'database.php';
+require 'database/database.php';
 
 // Check if the user is trying to register a new account
 if (isset($_POST['register'])) {

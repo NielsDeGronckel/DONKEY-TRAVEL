@@ -1,0 +1,310 @@
+* {
+    /* border: 1; */
+    margin: 0; 
+    padding: 0;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    color: #faf4f4;
+    list-style: none;
+
+}
+
+input {
+    margin-bottom: 0;
+    width: auto;
+    padding: 2px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* border-radius: 5px; */
+    margin-left: 5%;
+}
+
+.content {
+    margin-top: 50px;
+}
+
+.adminCard {
+    color: white;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-around;
+    /* justify-content: space-between; */
+    margin: 10px;
+    padding: 10px;
+    padding-bottom: 50px;
+    width: 1000px;
+    max-height: 500px;
+    min-height: 300px;
+    height: 100%;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    border-radius: 10px;
+    background-color: rgb(9, 116, 39);
+    box-shadow: 10px 10px 50px rgb(0, 0, 0);
+    overflow: none;
+    /* testing z-index compared to dropdown menu */
+    /* z-index: 0; */
+}
+
+.tableContainer {
+    max-height: 450px;
+    max-width: 100%;
+    overflow-y: scroll;
+    /* transition: scroll-behavior 0.5s ease-in-out; */
+    scroll-behavior: smooth;
+    /* z-index: 0; */
+
+}
+
+.tableContainerNon {
+    overflow-y: hidden;
+
+}
+
+td {
+    /* display: flex; */
+    overflow-x: scroll;
+    /* scroll */
+    max-width: 100px;
+    max-height: 20px;
+    height: 10px;
+    padding: 2px;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0);
+    border-radius: 2px;
+    z-index: 1;
+
+}
+td::-webkit-scrollbar-thumb {
+    opacity: 0;
+}
+
+td::-webkit-scrollbar { 
+    opacity: 0;
+}
+
+.adminContent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminTable {
+    display: flex;
+    flex-direction: column;
+}
+ /* admin nav */
+ .adminNav {
+    display: flex;
+    flex-direction: column;
+  }
+::-webkit-scrollbar-thumb {
+    background: none;
+}
+
+.parentTable {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.bxs-edit-alt {
+    /* margin-left: 50%; */
+    /* left: 0; */
+}
+.topBorder {
+    font-size: larger;
+    font-weight: bold;
+    /* background-color: red; */
+}
+
+
+/* scroll fixed position */
+
+.parentTable {
+    max-height: 450px;
+    overflow-y: scroll;
+    min-width: 850px;
+    scroll-behavior: smooth;
+
+  }
+
+  .arrowContainer {
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    
+
+  }
+
+  th {
+    font-weight: bold;
+    font-size: large;
+    border: 1px solid black;
+    border-radius: 2px;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0);
+    height: 30px;
+  }
+  .inputId {
+    top: 30px;
+    background-color: green;
+    position: sticky;
+  }
+  tr:has(th) {
+    /* background-color:rgb(193 66 66); */
+    background-color: green;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+  tr:has(td) {
+    /* z-index: -1; */
+  }
+  .th {
+    z-index: 0;
+  }
+  #trDisplay {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+    animation: topToBottom 1s linear;
+   }
+   @keyframes topToBottom {
+    0% {
+      transform: translateY(-100%); /* Start at the top */
+    }
+    100% {
+      transform: translateY(0); /* End at the bottom */
+    }
+  }
+  
+
+  table {
+    /* border-collapse: collapse; */
+    width: 100%;
+  }
+  .bxs-trash {
+    margin-left: 10px;
+  }
+  .bxs-edit-alt:hover, .greenButton:hover {
+    color: green;
+  }
+  .bxs-edit-alt:hover {
+    font-weight: bolder;
+
+  }
+  #add-row-button {
+    background: transparent;
+    cursor: pointer;
+  }
+
+  /* update Funct */
+  .editButton {
+    background-color: transparent;
+    cursor: pointer;
+  } 
+
+  .editButton span, .cell, .editButton input {
+    background-color: transparent;
+
+  }
+
+  .editButton button {
+    margin: 2px;
+    padding: 2px;
+    cursor: pointer;
+  }
+
+  .editButton span {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+  .cellSubmitButton, .cellCancelButton { 
+    background: opacity 0.8;
+    border-radius: 5px;
+}
+    .cellSubmitButton:hover { 
+        font-weight: bold;
+    }
+    .cellCancelButton .bx:hover {
+        font-weight: bolder;
+    }
+  .cellInputField {
+    /* color: blue; */
+    font-weight: bolder;
+    font-size: 14px;
+  }
+
+  .cellSubmitButton {
+    color: green;
+  }
+
+  .cellCancelButton .bx {
+    color: red;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .bx-x {
+    /* color: red; */
+  }
+
+    /* Chevron arrows */
+    .arrowContainer {
+        margin: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .bxs-chevrons-down, .bxs-chevrons-up{
+        font-size: larger;
+      }
+      .bxs-chevrons-down:hover {
+        padding-bottom: 5px;
+      }
+      .bxs-chevrons-up:hover {
+        padding-top: 5px;
+      }
+
+        /* Create new row table generator */
+  td input {
+    background: transparent;
+    width: 30px;
+    overflow: visible;
+  }
+
+/* 
+  .inputWidth {
+    max-width: 10px;
+  } */
+
+  .submitTable {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .submitTable button, .submitTable input{
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .submitTable input:hover, .submitTable button i:hover {
+    color: red;
+  }
+/* nav */
+
+.nav_message {
+  display: flex;
+  flex-direction: column;
+}
+
+#messagePHP {
+  color: white;
+}
