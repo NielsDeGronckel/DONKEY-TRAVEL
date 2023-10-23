@@ -2,55 +2,57 @@
 //Lukas Sliva
 
 class Klant {
-    //properties
-    protected $klantNaam;
-    protected $klantEmail;
-    protected $klantAdres;
-    protected $klantPostcode;
-    protected $klantWoonplaats;
+    // properties
+    protected $username;
+    protected $email;
+    protected $telefoon;
+    protected $password;
+    protected $changed;
 
-    //methoden -functies
     // constructor
-    function __construct($klantNaam=NULL, $klantEmail=NULL, $klantAdres=NULL, $klantPostcode=NULL, $klantWoonplaats=NULL) {
-        $this->klantNaam = $klantNaam;
-        $this->klantEmail = $klantEmail;
-        $this->klantAdres = $klantAdres;
-        $this->klantPostcode = $klantPostcode;
-        $this->klantWoonplaats = $klantWoonplaats;
+    function __construct($username=NULL, $email=NULL, $telefoon=NULL, $password=NULL, $changed=NULL) {
+        $this->username = $username;
+        $this->email = $email;
+        $this->telefoon = $telefoon;
+        $this->password = $password;
+        $this->changed = $changed;
     }
 
     // setters
-    function set_klantNaam($klantNaam) {
-        $this->klantNaam = $klantNaam;
+    function set_username($username) {
+        $this->username = $username;
     }
-    function set_klantEmail($klantEmail) {
-        $this->klantEmail = $klantEmail;
+    function set_email($email) {
+        $this->email = $email;
     }
-    function set_klantAdres($klantAdres) {
-        $this->klantAdres = $klantAdres;
+    function set_telefoon($telefoon) {
+        $this->telefoon = $telefoon;
     }
-    function set_klantPostcode($klantPostcode) {
-        $this->klantPostcode = $klantPostcode;
+    function set_password($password) {
+        $this->password = $password;
     }
-    function set_klantWoonplaats($klantWoonplaats) {
-        $this->klantWoonplaats = $klantWoonplaats;
+    function set_changed($changed) {
+        $this->changed = $changed;
     }
-    // getter
-    function get_klantNaam() {
-        return $this->klantNaam;
+
+    // getters
+    function get_username() {
+        return $this->username;
     }
-    function get_klantEmail() {
-        return $this->klantEmail;
+    function get_email() {
+        return $this->email;
     }
-    function get_klantAdres() {
-        return $this->klantAdres;
+    function get_telefoon() {
+        return $this->telefoon;
     }
-    function get_klantPostcode() {
-        return $this->klantPostcode;
+    function get_password() {
+        return $this->password;
     }
-    function get_klantWoonplaats() {
-        return $this->klantWoonplaats;
+    function get_changed() {
+        return $this->changed;
     }
+
+
     
     //CRUD functies
     // Retrieves the userId from the database based on the provided email and stores it in a session variable
@@ -101,24 +103,23 @@ class Klant {
     }
 
     //read klant and give delete/update buttons with the ID    
-    public function readKlant() {
+    public function readKlant($userId) {
         require 'database/pureConnect.php';
-        $sql = $conn->prepare('SELECT * FROM klanten');
+        $sql = $conn->prepare('SELECT username, email, telefoon FROM klanten where ID = :userId');
+        $sql->bindParam(':userId', $userId);
         $sql->execute();
     
         foreach($sql as $klant) {
-            $klantObject = new Klant($klant['klantNaam'], $klant['klantEmail'], $klant['klantAdres'], $klant['klantPostcode'], $klant['klantWoonplaats']);
+            $klantObject = new Klant($klant['username'], $klant['email'], $klant['telefoon'],);
             echo '<br>';
             echo '<div class="readList">';
-            echo '<a href="klantDelete.php?action=delete&klantId=' . $klant['klantId'] . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this klant?\')">Delete</a>';            
-            echo '<a href="klantUpdateForm.php?action=update&klantId=' . $klant['klantId'] . '"class="updateButton">Update</a>';
+            echo '<a href="klantDelete.php?action=delete&klantId=' . $userId . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this klant?\')">Delete</a>';            
+            echo '<a href="klantUpdateForm.php?action=update&klantId=' . $userId . '"class="updateButton">Update</a>';
             
             // echo $klantObject->klantId . ' - ';
-            echo $klantObject->klantNaam . ' - ';
-            echo $klantObject->klantEmail . ' - ';
-            echo $klantObject->klantAdres . ' - ';
-            echo $klantObject->klantPostcode . ' - ';
-            echo $klantObject->klantWoonplaats . ' - ';
+            echo $klantObject->username . ' - ';
+            echo $klantObject->email . ' - ';
+            echo $klantObject->telefoon . ' - ';
             echo '</div>';
             echo '<br>';
         }
@@ -147,6 +148,23 @@ class Klant {
         $klant = $sql->fetch();
         return $klant;
     }
+
+        //Update klant using the klant ID
+        public function updateKlant($klantId, $klantNaam, $klantEmail, $klantAdres, $klantPostcode, $klantWoonplaats) {
+            require 'database/pureConnect.php';
+            $sql = $conn->prepare('UPDATE klanten SET klantNaam = :klantNaam, klantEmail = :klantEmail, klantAdres = :klantAdres, klantPostcode = :klantPostcode, klantWoonplaats = :klantWoonplaats WHERE klantId = :klantId');
+            $sql->bindParam(':klantId', $klantId);
+            $sql->bindParam(':klantNaam', $klantNaam);
+            $sql->bindParam(':klantEmail', $klantEmail);
+            $sql->bindParam(':klantAdres', $klantAdres);
+            $sql->bindParam(':klantPostcode', $klantPostcode);
+            $sql->bindParam(':klantWoonplaats', $klantWoonplaats);
+    
+            $sql->execute();
+        
+            $_SESSION['message'] = 'Klant ' . $klantNaam . ' is bijgewerkt <br>';
+            header("Location: klantRead.php");
+        }
 
     //get the klant naam and ID for the option values for the verkoop order create/update
     // public function getKlanten() {
@@ -199,116 +217,6 @@ class Klant {
         // Fetch a single row
         $klant = $sql->fetch(PDO::FETCH_ASSOC);
         return $klant;
-    }
-
-
-    //search klant using klant ID
-    public function searchBezorger($klantId) {
-        require 'database/pureConnect.php';
-        $sql = $conn->prepare('SELECT klanten.klantId, klantNaam, klantEmail, klantAdres, klantPostcode, klantWoonplaats, verkOrdId, verkOrdStatus, verkOrdDatum, artId
-        FROM klanten
-        JOIN verkooporders ON klanten.klantId = verkooporders.klantId
-        WHERE klanten.klantId = :klantId');
-        $sql->bindParam(':klantId', $klantId);
-        $sql->execute();
-
-        $klant = $sql->fetch();
-        if ($klant) {
-            $result = array();
-            $result['klantId'] = $klant['klantId'];
-            $result['klantNaam'] = $klant['klantNaam'];
-            $result['klantEmail'] = $klant['klantEmail'];
-            $result['klantAdres'] = $klant['klantAdres'];
-            $result['klantPostcode'] = $klant['klantPostcode'];
-            $result['klantWoonplaats'] = $klant['klantWoonplaats'];
-            $result['verkOrdId'] = $klant['verkOrdId'];
-            $result['verkOrdStatus'] = ($klant['verkOrdStatus'] == 1) ? 'true' : 'false';
-            $result['verkOrdDatum'] = $klant['verkOrdDatum'];
-            $result['artId'] = $klant['artId'];
-
-            //redirect to the menu and pass the result array
-            header("Location: menuBezorger.php");
-            $_SESSION['result'] = $result;
-            exit;
-        } else {
-            //redirect to the menu and give the error message
-            header("Location: menuBezorger.php");
-            $_SESSION['searchMsg'] = "No result found for this Klant.";
-    
-        }
-    
-    }
-
-    //search klant using klant postcode
-    public function searchKlant($klantPostcode) {
-        require 'database/pureConnect.php';
-        $sql = $conn->prepare('SELECT * FROM klanten WHERE klantPostcode = :klantPostcode');
-        $sql->bindParam(':klantPostcode', $klantPostcode);
-        $sql->execute();
-    
-        $klant = $sql->fetch();
-        if ($klant) {
-            $result = array();
-            $result['klantNaam'] = $klant['klantNaam'];
-            $result['klantEmail'] = $klant['klantEmail'];
-            $result['klantAdres'] = $klant['klantAdres'];
-            $result['klantPostcode'] = $klant['klantPostcode'];
-            $result['klantWoonplaats'] = $klant['klantWoonplaats'];
-            $_SESSION['result'] = $result;
-            header("Location: klantRead.php");
-            exit;
-
-        } else {
-            header("Location: klantRead.php");
-            $_SESSION['searchMsg'] = "No result found for this Postcode.";
-
-        }
-
-    }
-
-    //search klant using klant ID
-
-    public function searchKlantId($klantId) {
-        require 'database/pureConnect.php';
-        $sql = $conn->prepare('SELECT * FROM klanten WHERE klantId = :klantId');
-        $sql->bindParam(':klantId', $klantId);
-        $sql->execute();
-    
-        $klant = $sql->fetch();
-        if ($klant) {
-            $result = array();
-            $result['klantNaam'] = $klant['klantNaam'];
-            $result['klantEmail'] = $klant['klantEmail'];
-            $result['klantAdres'] = $klant['klantAdres'];
-            $result['klantPostcode'] = $klant['klantPostcode'];
-            $result['klantWoonplaats'] = $klant['klantWoonplaats'];
-            $_SESSION['result'] = $result;
-            header("Location: klantRead.php");
-            exit;
-
-        } else {
-            header("Location: klantRead.php");
-            $_SESSION['searchMsg'] = "No result found for this klantId.";
-
-        }
-
-    }
-
-    //Update klant using the klant ID
-    public function updateKlant($klantId, $klantNaam, $klantEmail, $klantAdres, $klantPostcode, $klantWoonplaats) {
-        require 'database/pureConnect.php';
-        $sql = $conn->prepare('UPDATE klanten SET klantNaam = :klantNaam, klantEmail = :klantEmail, klantAdres = :klantAdres, klantPostcode = :klantPostcode, klantWoonplaats = :klantWoonplaats WHERE klantId = :klantId');
-        $sql->bindParam(':klantId', $klantId);
-        $sql->bindParam(':klantNaam', $klantNaam);
-        $sql->bindParam(':klantEmail', $klantEmail);
-        $sql->bindParam(':klantAdres', $klantAdres);
-        $sql->bindParam(':klantPostcode', $klantPostcode);
-        $sql->bindParam(':klantWoonplaats', $klantWoonplaats);
-
-        $sql->execute();
-    
-        $_SESSION['message'] = 'Klant ' . $klantNaam . ' is bijgewerkt <br>';
-        header("Location: klantRead.php");
     }
 }
 

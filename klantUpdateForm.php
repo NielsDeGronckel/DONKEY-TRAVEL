@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>update klant</title>
 </head>
@@ -17,7 +17,7 @@
         <div class="accountPage">
             <div class="basCard">
                 <div class="accountItems">
-                    <h1>Update klant:</h1>
+                    <h1>Update uw account:</h1>
                     <div class="accountForm">
                         <?php
                             require 'Klant.php';
@@ -27,17 +27,13 @@
                             // var_dump($klantId);
                         ?>
                        <form method="POST" action="klantUpdate.php">
-                            <input type="hidden" name="klantId" value="<?php echo $klant['klantId']; ?>">
+                            <input type="hidden" name="username" value="<?php echo $klant['klantId']; ?>">
                             <label>Naam:</label>
-                            <input type="text" name="klantNaam" value="<?php echo $klant['klantNaam']; ?>"><br>
+                            <input type="text" name="email" value="<?php echo $klant['klantNaam']; ?>"><br>
                             <label>Email:</label>
-                            <input type="email" name="klantEmail" value="<?php echo $klant['klantEmail']; ?>"><br>
+                            <input type="email" name="telefoon" value="<?php echo $klant['klantEmail']; ?>"><br>
                             <label>Adres:</label>
-                            <input type="text" name="klantAdres" value="<?php echo $klant['klantAdres']; ?>"><br>
-                            <label>Postcode:</label>
-                            <input type="text" name="klantPostcode" pattern="[0-9]{4}[A-Z]{2}" title="Five digit zip code" value="<?php echo $klant['klantPostcode']; ?>"><br>
-                            <label>Woonplaats:</label>
-                            <input type="text" name="klantWoonplaats" value="<?php echo $klant['klantWoonplaats']; ?>"><br>
+                    
                             <div class="formEnd">
                                 <input type="submit" value="Submit">                            
                                 <p><a id="cancel" href="klantRead.php">Cancel</a></p>
