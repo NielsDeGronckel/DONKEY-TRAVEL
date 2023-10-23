@@ -16,7 +16,6 @@
                 <div class="CardContent">
                     <h1>Boekingen inzien voor <?php echo $_SESSION['username']; ?></h1>
                     <div class="divRead">
-                        <p>Al uw boekingen:</p>
                         <div class="readContainer">
                             <div class="read">
                                 <?php 

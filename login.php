@@ -44,31 +44,32 @@ try {
             // $_SESSION['klantId'] = $klantIdSession->getKlantIdSession($username);
 
             // Check if user is logged in
-            require 'function.php';
+            // require 'function.php';
 
-                // Display different navigation bar based on user's 'functie'
-                switch($rights) {
-                    case "admin":
-                        // Display navigation bar for afdelingsHoofd
-                        header("location: menuAfdelingsHoofd.php");
-                        break;
-                    case "ceo":
-                        // Display navigation bar for afdelingsHoofd
-                        header("location: menuAfdelingsHoofd.php");
-                        break;
-                    default:
-                        // Display default navigation bar
-                        header("location: menuKlant.php");
-                        break;
-                }
+            //     // Display different navigation bar based on user's 'functie'
+            //     switch($rights) {
+            //         case "admin":
+            //             // Display navigation bar for afdelingsHoofd
+            //             header("location: menuAfdelingsHoofd.php");
+            //             break;
+            //         case "ceo":
+            //             // Display navigation bar for afdelingsHoofd
+            //             header("location: menuAfdelingsHoofd.php");
+            //             break;
+            //         default:
+            //             // Display default navigation bar
+            //             header("location: menuKlant.php");
+            //             break;
+            //     }
+            header("Location: account");
 
         } else {
             $_SESSION['message'] = 'Invalid log in credentials. Please try again.';
-            header("Location: loginForm.php");
+            header("Location: loginForm");
         }
     } else {
         $_SESSION['message'] = "Account doesn't exist. Please try again.";
-        header("Location: loginForm.php");
+        header("Location: loginForm");
     }
     // var_dump($_SESSION['message']);
 } catch (PDOException $e) {
