@@ -9,6 +9,16 @@
     <title>update klant</title>
 </head>
 <body>
+<?php 
+$getKlantId = intval($_GET['GETklantId']);
+
+session_start();
+
+if ($_SESSION['klantId'] !== $getKlantId) { 
+    header("Location: restrictedContent");        
+        } else {  
+            session_abort();
+?>
     <?php 
     require 'nav.php';
     ?>
@@ -21,31 +31,26 @@
                     <div class="accountForm">
                         <?php
                             require 'Classes/Klant.php';
-                            $klantId = $_GET['klantId'];
                             $klant1 = new Klant();
-                            $klant = $klant1->findKlant($klantId);
+                            $klant = $klant1->findKlant($_GET['GETklantId']);
                             // var_dump($klantId);
                         ?>
                        <form method="POST" action="klantUpdate.php">
                             <input type="hidden" name="klantId" value="<?php echo $klant['ID']; ?>">
                             <label>Naam:</label>
-                            <input type="text" name="username" value="<?php echo $klant['username']; ?>"><br>
+                            <input type="text" name="usernameKlant" value="<?php echo $klant['username']; ?>"><br>
                             <label>Email:</label>
                             <input type="email" name="email" value="<?php echo $klant['email']; ?>"><br>
                             <label>Telefoon:</label>
                             <input type="telefoon" name="telefoon" value="<?php echo $klant['telefoon']; ?>"><br>
                             <label>Wachtwoord:</label>
-                            <input type="password" name="password" value="<?php echo $klant['password']; ?>"><br>
+                            <input type="password" name="passwordKlant" value="<?php echo $klant['password']; ?>"><br>
 
                             <div class="formEnd">
                                 <input type="submit" value="Submit">                            
-                                <p><a id="cancel" href="klantRead.php">Cancel</a></p>
+                                <p><a id="cancel" href="menuKlant">Cancel</a></p>
                             </div>
                         </form>
-                        <div class="question">
-                            <p>Maak nieuwe klanten: <a href="klantCreateForm.php">Klant Create</a> </p>
-
-                        </div>
                     </div>
                 </div>
             </div>
@@ -54,6 +59,7 @@
 
 
     <?php require 'footer.php'?>
+    <?php } ?>
 </body>
 <style>
     

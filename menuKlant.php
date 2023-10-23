@@ -19,16 +19,13 @@
                     <p>U bent nu ingelogd, in de navigatiebalk bovenin kunt u verder.</p>
 
                     <div class="divRead">
-                        <p>Dit zijn alle klant gegevens uit de database:</p>
+                        <p>Uw account:</p>
                         <div class="read">
                             <?php
                                 require 'Classes/Klant.php';
                                 $klanten = new Klant();
                                 $klanten->ReadKlant($_SESSION['klantId']);
                             ?>
-                            <div class="redirect">
-                                <a href="klantCreateForm.php">Create klant</a>
-                            </div>
                         </div>
                         <div id="messagePHP"><?php
                             if (isset($_SESSION['message'])) {
