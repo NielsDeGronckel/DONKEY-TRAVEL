@@ -141,7 +141,7 @@ class Klant {
     //find klant using klant Id for the update form
     public function findKlant($klantId) {
         require 'database/pureConnect.php';
-        $sql = $conn->prepare('SELECT * FROM klanten WHERE klantId = :klantId');
+        $sql = $conn->prepare('SELECT * FROM klanten WHERE ID = :klantId');
         $sql->bindParam(':klantId', $klantId);
         $sql->execute();
     
@@ -150,20 +150,19 @@ class Klant {
     }
 
         //Update klant using the klant ID
-        public function updateKlant($klantId, $klantNaam, $klantEmail, $klantAdres, $klantPostcode, $klantWoonplaats) {
+        public function updateKlant($klantId, $username, $email, $telefoon, $password ) {
             require 'database/pureConnect.php';
-            $sql = $conn->prepare('UPDATE klanten SET klantNaam = :klantNaam, klantEmail = :klantEmail, klantAdres = :klantAdres, klantPostcode = :klantPostcode, klantWoonplaats = :klantWoonplaats WHERE klantId = :klantId');
+            $sql = $conn->prepare('UPDATE klanten SET username = :username, telefoon = :telefoon, email = :email, password = :password WHERE ID = :klantId');
             $sql->bindParam(':klantId', $klantId);
-            $sql->bindParam(':klantNaam', $klantNaam);
-            $sql->bindParam(':klantEmail', $klantEmail);
-            $sql->bindParam(':klantAdres', $klantAdres);
-            $sql->bindParam(':klantPostcode', $klantPostcode);
-            $sql->bindParam(':klantWoonplaats', $klantWoonplaats);
-    
+            $sql->bindParam(':username', $username);
+            $sql->bindParam(':email', $email);
+            $sql->bindParam(':telefoon', $telefoon);
+            $sql->bindParam(':password', $password);
+            
             $sql->execute();
         
-            $_SESSION['message'] = 'Klant ' . $klantNaam . ' is bijgewerkt <br>';
-            header("Location: klantRead.php");
+            $_SESSION['message'] = 'Gefeliciteerd ' . $username . ', uw account is succesvol bijgewerkt. <br>';
+            header("Location: menuKlant");
         }
 
     //get the klant naam and ID for the option values for the verkoop order create/update

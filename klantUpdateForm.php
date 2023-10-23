@@ -20,20 +20,23 @@
                     <h1>Update uw account:</h1>
                     <div class="accountForm">
                         <?php
-                            require 'Klant.php';
+                            require 'Classes/Klant.php';
                             $klantId = $_GET['klantId'];
                             $klant1 = new Klant();
                             $klant = $klant1->findKlant($klantId);
                             // var_dump($klantId);
                         ?>
                        <form method="POST" action="klantUpdate.php">
-                            <input type="hidden" name="username" value="<?php echo $klant['klantId']; ?>">
+                            <input type="hidden" name="klantId" value="<?php echo $klant['ID']; ?>">
                             <label>Naam:</label>
-                            <input type="text" name="email" value="<?php echo $klant['klantNaam']; ?>"><br>
+                            <input type="text" name="username" value="<?php echo $klant['username']; ?>"><br>
                             <label>Email:</label>
-                            <input type="email" name="telefoon" value="<?php echo $klant['klantEmail']; ?>"><br>
-                            <label>Adres:</label>
-                    
+                            <input type="email" name="email" value="<?php echo $klant['email']; ?>"><br>
+                            <label>Telefoon:</label>
+                            <input type="telefoon" name="telefoon" value="<?php echo $klant['telefoon']; ?>"><br>
+                            <label>Wachtwoord:</label>
+                            <input type="password" name="password" value="<?php echo $klant['password']; ?>"><br>
+
                             <div class="formEnd">
                                 <input type="submit" value="Submit">                            
                                 <p><a id="cancel" href="klantRead.php">Cancel</a></p>
