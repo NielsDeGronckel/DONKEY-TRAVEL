@@ -9,6 +9,7 @@
     <title>update boeking</title>
 </head>
 <body>
+<?php require_once 'inlogCheck.php'?>
     <?php 
     require 'nav.php';
     require 'Classes/Boeking.php';

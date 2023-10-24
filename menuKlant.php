@@ -9,6 +9,7 @@
     <title>Klant</title>
 </head>
 <body>
+<?php require_once 'inlogCheck.php'?>
     <?php require 'nav.php'?>
     <div class="content">
         <div class="accountPage">

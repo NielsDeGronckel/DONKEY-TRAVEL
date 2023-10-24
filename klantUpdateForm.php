@@ -9,6 +9,7 @@
     <title>update klant</title>
 </head>
 <body>
+<?php require_once 'inlogCheck.php'?>
 <?php 
 $getKlantId = intval($_GET['GETklantId']);
 
