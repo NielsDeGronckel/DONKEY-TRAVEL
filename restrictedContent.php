@@ -30,6 +30,9 @@
             justify-content: center;
             align-items: center;
         }
+        .redirect a{
+            color: black;
+        }
     </style>
 <main>
     <div class="content">
@@ -38,6 +41,7 @@
                 <h1>Restricted Access</h1>
                 <p>Sorry, but you don't have permission to access this content.</p>
                 <p>If you believe this is an error, please contact the administrator.</p>
+                <p class="redirect"><a href="loginForm.php">Login here<i class='bx bxs-right-arrow-alt'></i></a></p>
             </div>
         </div>        
     </div>

@@ -13,6 +13,8 @@
      crossorigin="anonymous"></script>
 </head>
 <body>
+<?php require_once 'inlogCheck.php'?>
+
 <?php 
 session_start();
 if (!$_SESSION['username'] || $_SESSION['username'] !== 'admin'){ 

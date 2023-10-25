@@ -1,5 +1,5 @@
 <?php
-require 'Klant.php';
+require 'Classes/Klant.php';
 if(isset($_GET['action']) && isset($_GET['klantId'])) {
     $klantId = $_GET['klantId'];
     if($_GET['action'] == 'delete') {

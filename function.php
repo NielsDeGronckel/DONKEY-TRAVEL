@@ -8,9 +8,9 @@ if(isset($_SESSION['username'])) {
     $stmt->bindParam(':username', $username, PDO::PARAM_STR);
     $stmt->execute();
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($row['rights']) {   
+    $rights = $row['rights'] ?? 'NULL';
+    if (isset($row['rights'])) {   
         $_SESSION['rights'] = $row['rights'];
     }
-    $rights = $row['rights'] ?? NULL;
 }
 ?>

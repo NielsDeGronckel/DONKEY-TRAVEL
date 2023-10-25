@@ -10,9 +10,8 @@ switch($rights) {
         header("location: menuManagement.php");
         break;
     case NULL || 'NULL':
-            header("location: menuKlant.php");
-    
-            break;
+        header("location: menuKlant.php");
+        break;
     default:
         break;
 

@@ -9,6 +9,7 @@
     <title>Boeking Inzien</title>
 </head>
 <body>
+    <?php require_once 'inlogCheck.php'?>
     <?php require 'nav.php'?>
     <div class="content">
         <div class="accountPage">
@@ -16,7 +17,6 @@
                 <div class="CardContent">
                     <h1>Boekingen inzien voor <?php echo $_SESSION['username']; ?></h1>
                     <div class="divRead">
-                        <p>Al uw boekingen:</p>
                         <div class="readContainer">
                             <div class="read">
                                 <?php 

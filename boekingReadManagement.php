@@ -9,6 +9,8 @@
     <title>Boeking Inzien Management Systeem</title>
 </head>
 <body>
+<?php require_once 'inlogCheck.php'?>
+
 <?php 
 session_start();
     if ($_SESSION['rights'] !== 'management' && $_SESSION['rights'] !== 'admin'){ 

@@ -160,7 +160,7 @@
 
         // Limit the input to 11 characters
         if (telefoonInput.value.length > 11) {
-            telefoonInput.value = telefoonInput.value.slice(0, 11);
+            telefoonInput.value = telefoonInput.value.slice(0, 10);
         }
         });
 

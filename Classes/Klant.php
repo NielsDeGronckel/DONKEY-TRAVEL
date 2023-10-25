@@ -190,18 +190,18 @@ class Klant {
     }
 
         //Update klant using the klant ID
-        public function updateKlant($klantId, $username, $email, $telefoon, $password ) {
+        public function updateKlant($klantId, $usernameKlant, $email, $telefoon, $passwordKlant) {
             require 'database/pureConnect.php';
-            $sql = $conn->prepare('UPDATE klanten SET username = :username, telefoon = :telefoon, email = :email, password = :password WHERE ID = :klantId');
+            $sql = $conn->prepare('UPDATE klanten SET username = :usernameKlant, telefoon = :telefoon, email = :email, password = :passwordKlant WHERE ID = :klantId');
             $sql->bindParam(':klantId', $klantId);
-            $sql->bindParam(':username', $username);
+            $sql->bindParam(':usernameKlant', $usernameKlant);
             $sql->bindParam(':email', $email);
             $sql->bindParam(':telefoon', $telefoon);
-            $sql->bindParam(':password', $password);
+            $sql->bindParam(':passwordKlant', $passwordKlant);
             
             $sql->execute();
         
-            $_SESSION['message'] = 'Gefeliciteerd ' . $username . ', uw account is succesvol bijgewerkt. <br>';
+            $_SESSION['message'] = 'Gefeliciteerd ' . $usernameKlant . ', uw account is succesvol bijgewerkt. <br>';
             header("Location: menuKlant");
         }
 

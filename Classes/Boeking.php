@@ -127,13 +127,20 @@ class Boeking
         $sql = $conn->prepare("SELECT ID, StartDatum, PINCode, FKtochtenID, FKstatussenID, FKtrackerID FROM boekingen WHERE FKklantenID = :FKklantenID");
         $sql->bindParam(':FKklantenID', $FKklantenID);
         $sql->execute();
+        $result = $sql->fetchAll(); // Fetch all rows from the result set.
+
+        if (empty($result)) {
+            echo "<p>Nog geen boekingen.</p>"; // Display a message if the result set is empty.
+            return;
+        }
+        $s = '<p>Al uw boekingen:</p>';
         require 'Classes/Tocht.php';
         require 'Classes/Status.php';
 
         $newTocht = new Tocht();
         $statussen = new Status();
         // $s instead of echo
-        $s = '<table class="table-auto" border="1">';
+        $s .= '<table class="table-auto" border="1">';
         $s .= '<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">';
         $s .= '<tr>';
         $s .= '<th scope="col" class="px-6 py-3">Startdatum</th>';
@@ -141,10 +148,10 @@ class Boeking
         $s .= '<th scope="col" class="px-6 py-3">PIN Code</th>';
         $s .= '<th scope="col" class="px-6 py-3">Tocht</th>';
         $s .= '<th scope="col" class="px-6 py-3">Status</th>';
-        $s .= '<th scope="col" class="px-6 py-3">Tracker</th>';
+        // $s .= '<th scope="col" class="px-6 py-3">Tracker</th>';
         $s .= '<th scope="col" class="px-6 py-3">CMD</th>';
     
-        foreach ($sql as $boeking) {
+        foreach ($result as $boeking) {
             $FKtochtenID = $boeking['FKtochtenID'];
             $tochtenArray = $newTocht->getTochtWithId($FKtochtenID);
             $statusIdArray = $statussen->getStatusWithId($boeking['FKstatussenID']);
@@ -175,7 +182,7 @@ class Boeking
             $s .= '<button type="button" class="readButton">' . $tochtenArray["Omschrijving"] . ' ('. $numberOfDays .' dagen)</button>';
             $s .= '</td>';
             $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $selectedStatus . "<br/>" . '</td>';
-            $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $boeking["FKtrackerID"] . "<br/>" . '</td>';
+            // $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $boeking["FKtrackerID"] . "<br/>" . '</td>';
             $s .= '<td><a href="boekingUpdateForm.php?action=update&tbl=boekingen&ID=' . $boeking["ID"] . '" class="updateButton"><i class="bx bxs-edit-alt"></i></a>';
             $s .= '<a href="boekingDelete.php?action=delete&tbl=boekingen&ID=' . $boeking["ID"] . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this row?\')"><i class="bx bxs-trash"></i></a></td>';
         }
