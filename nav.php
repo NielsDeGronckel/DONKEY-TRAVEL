@@ -23,8 +23,8 @@
                             echo '<div class="dropdown">';
                             echo '<button class="dropbtn">Management Systeem</button>';
                             echo '<div class="dropdown-content">';
-                            echo '<a href="klantRead" class="navLink">Klant</a>'; 
-                            echo '<a href="boekingReadManagement" class="navLink">Boekingen MS</a>'; 
+                            echo '<a href="klantReadManagement" class="navLink">Klant</a>'; 
+                            echo '<a href="boekingReadManagement" class="navLink">Boekingen</a>'; 
                             echo '</div>';
                             echo '</div>';
                             echo '<div class="dropdown">';
@@ -42,7 +42,7 @@
                             echo '<div class="dropdown">';
                             echo '<button class="dropbtn">Management Systeem</button>';
                             echo '<div class="dropdown-content">';
-                            echo '<a href="klantRead" class="navLink">Klant</a>'; 
+                            echo '<a href="klantReadManagement" class="navLink">Klant</a>'; 
                             echo '<a href="boekingReadManagement" class="navLink">Boekingen</a>'; 
                             echo '</div>';
                             echo '</div>';
@@ -51,8 +51,6 @@
                             // Display navigation bar for klant
                             echo '<a href="about" class="navLink">About</a>'; 
                             echo '<a href="contact" class="navLink">Contact</a>'; 
-                            echo '<a href="menuKlant" class="navLink">Dashboard</a>'; 
-
                             echo '<div class="dropdown">';
                             echo '<button class="dropbtn">Boekingen</button>';
                             echo '<div class="dropdown-content">';
