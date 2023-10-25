@@ -192,12 +192,18 @@ class Klant {
         //Update klant using the klant ID
         public function updateKlant($klantId, $usernameKlant, $email, $telefoon, $passwordKlant) {
             require 'database/pureConnect.php';
-            $sql = $conn->prepare('UPDATE klanten SET username = :usernameKlant, telefoon = :telefoon, email = :email, password = :passwordKlant WHERE ID = :klantId');
+            if (!empty($passwordKlant)) {
+            $passwordKlant = rtrim($passwordKlant);
+            $passwordKlant = password_hash($passwordKlant, PASSWORD_DEFAULT);
+            }
+            $sql = $conn->prepare('UPDATE klanten SET username = :usernameKlant, telefoon = :telefoon, email = :email' . (!empty($passwordKlant) ? ', password = :passwordKlant' : '') . ' WHERE ID = :klantId');
             $sql->bindParam(':klantId', $klantId);
             $sql->bindParam(':usernameKlant', $usernameKlant);
             $sql->bindParam(':email', $email);
             $sql->bindParam(':telefoon', $telefoon);
-            $sql->bindParam(':passwordKlant', $passwordKlant);
+            if (!empty($passwordKlant)) {
+                $sql->bindParam(':passwordKlant', $passwordKlant);
+            }
             
             $sql->execute();
         

@@ -9,14 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $telefoon = $_POST['telefoon'];
     $password = $_POST['password'];
-    $password = password_hash($password, PASSWORD_DEFAULT);
-
-   
+     if (!empty($passwordKlant)) {
+        $password = trim($password);
+     }
+    // $password = password_hash($password, PASSWORD_DEFAULT);
 
     //create new instance for the class
     $klant = new Klant();
     
     // Call the updateLeverancier method on the $lev object, passing in the form data as arguments
+    // $klant->updateKlant($klantId, $usernameKlant, $email, $telefoon, (!empty($password) ? $password : ));
     $klant->updateKlant($klantId, $usernameKlant, $email, $telefoon, $password);
+
 }
 ?>

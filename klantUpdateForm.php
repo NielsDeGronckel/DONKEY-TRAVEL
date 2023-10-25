@@ -44,11 +44,10 @@ if ($_SESSION['klantId'] !== $getKlantId) {
                             <input type="email" name="email" value="<?php echo $klant['email']; ?>"><br>
                             <label>Telefoon:</label>
                             <input type="telefoon" name="telefoon" value="<?php echo $klant['telefoon']; ?>"><br>
-                            <label>Wachtwoord:</label>
-                            <input type="password" name="passwordKlant" value="<?php echo $klant['password']; ?>"><br>
-
+                            <label>Nieuw wachtwoord:</label>
+                            <input type="password" name="passwordKlant"><br>
                             <div class="formEnd">
-                                <input type="submit" value="Submit">                            
+                                <input type="submit" value="Submit">                      
                                 <p><a id="cancel" href="menuKlant">Cancel</a></p>
                             </div>
                         </form>
