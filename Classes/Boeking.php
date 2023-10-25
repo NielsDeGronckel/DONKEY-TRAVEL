@@ -148,7 +148,7 @@ class Boeking
         $s .= '<th scope="col" class="px-6 py-3">PIN Code</th>';
         $s .= '<th scope="col" class="px-6 py-3">Tocht</th>';
         $s .= '<th scope="col" class="px-6 py-3">Status</th>';
-        $s .= '<th scope="col" class="px-6 py-3">Tracker</th>';
+        // $s .= '<th scope="col" class="px-6 py-3">Tracker</th>';
         $s .= '<th scope="col" class="px-6 py-3">CMD</th>';
     
         foreach ($result as $boeking) {
@@ -182,7 +182,7 @@ class Boeking
             $s .= '<button type="button" class="readButton">' . $tochtenArray["Omschrijving"] . ' ('. $numberOfDays .' dagen)</button>';
             $s .= '</td>';
             $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $selectedStatus . "<br/>" . '</td>';
-            $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $boeking["FKtrackerID"] . "<br/>" . '</td>';
+            // $s .= '<td class="px-6 py-4 text-white bg-slate-600">' . $boeking["FKtrackerID"] . "<br/>" . '</td>';
             $s .= '<td><a href="boekingUpdateForm.php?action=update&tbl=boekingen&ID=' . $boeking["ID"] . '" class="updateButton"><i class="bx bxs-edit-alt"></i></a>';
             $s .= '<a href="boekingDelete.php?action=delete&tbl=boekingen&ID=' . $boeking["ID"] . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this row?\')"><i class="bx bxs-trash"></i></a></td>';
         }
