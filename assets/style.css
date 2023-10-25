@@ -8,9 +8,9 @@ body {
  * {
   scroll-behavior: smooth;
  }
-/* button:hover {
-    background-color: red;
-} */
+button, .submitButton input, #datepicker, input[type="button"], input[type="date"] {
+    cursor: pointer;
+}
 .content {
     padding: 10px;
     margin: 10px;
@@ -59,6 +59,9 @@ body {
     border-color: white;
     border-style: double;
 
+}
+.readList a {
+  margin: 5px;
 }
 .divRead {
     border-top-style: double;
@@ -114,7 +117,9 @@ body {
     /* justify-content: space-between; */
     margin: 10px;
     padding: 10px;
-    width: 850px;
+    width: auto;
+    max-width: 1000px;
+    min-width: 700px;
     max-height: 600px;
     min-height: 300px;
     height: 100%;
@@ -657,4 +662,10 @@ nav {
   -webkit-backdrop-filter: blur(6px);
 
 
+}
+
+/* Table styling  */
+
+td, th {
+  padding: 5px;
 }

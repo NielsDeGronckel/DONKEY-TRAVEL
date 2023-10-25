@@ -42,7 +42,7 @@ if (isset($_POST['register'])) {
         header("Location: registerForm.php");    }
 
     // check if there is any inapropriate word in the username or the email
-    $inapropriate_words = array("slet", "kont", "bil", "ass", "booty", "neuk", "auti", "autist", "flikker", "dildo", "kkr", "lukas", "fuck", "hell","crap", "damn", "ass", "hoe", "hoer", "whore", "kanker", "kut", "tering" , "shite", "nigger", "nigga" ,"shit", "bitch");
+    $inapropriate_words = array("slet", "cancer", "homo", "gay", "kont", "bil", "ass", "booty", "neuk", "auti", "autist", "flikker", "dildo", "kkr", "lukas", "fuck", "hell","crap", "damn", "ass", "hoe", "hoer", "whore", "kanker", "kut", "tering" , "shite", "nigger", "nigga" ,"shit", "bitch");
     foreach($inapropriate_words as $word){
         if (strpos($username, $word) !== false || strpos($email, $word) !== false) {
             $_SESSION['message'] = '<p class="messageRed">Sorry, inapropriate word found in username or email.</p>';
