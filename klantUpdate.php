@@ -9,6 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $telefoon = $_POST['telefoon'];
     $password = $_POST['password'];
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
    
 
     //create new instance for the class

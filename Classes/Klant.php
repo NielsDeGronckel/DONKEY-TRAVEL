@@ -3,6 +3,7 @@
 
 class Klant {
     // properties
+    protected $ID;
     protected $username;
     protected $email;
     protected $telefoon;
@@ -114,28 +115,67 @@ class Klant {
             echo '<br>';
             echo '<div class="readList">';
             echo '<a href="klantDelete.php?action=delete&klantId=' . $userId . '" class="deleteButton" onclick="return confirm(\'Are you sure you want to delete this klant?\')">Delete</a>';            
-            echo '<a href="klantUpdateForm.php?action=update&klantId=' . $userId . '"class="updateButton">Update</a>';
+            echo '<a href="klantUpdateForm.php?action=update&GETklantId=' . $userId . '"class="updateButton">Update</a>';
             
             // echo $klantObject->klantId . ' - ';
             echo $klantObject->username . ' - ';
             echo $klantObject->email . ' - ';
-            echo $klantObject->telefoon . ' - ';
+            echo $klantObject->telefoon;
             echo '</div>';
             echo '<br>';
         }
   
     }
 
+    //read klant info for management system
+    public function readKlantManagement() {
+        require 'database/pureConnect.php';
+        $sql = $conn->prepare('SELECT ID, username, email, telefoon, changed FROM klanten');
+        $sql->execute();
+    
+        echo '<table class="table-auto" border="1">';
+        echo '<tr>';
+        echo '<th>ID</th>';
+        echo '<th>Username</th>';
+        echo '<th>Email</th>';
+        echo '<th>Telefoon</th>';
+        echo '</tr>';
+    
+        foreach ($sql as $klant) {
+            $klantObject = new Klant($klant['ID'], $klant['username'], $klant['email'], $klant['telefoon'], $klant['changed']);
+            echo '<tr>';
+            echo '<td>' . $klantObject->username . '</td>';
+            echo '<td>' . $klantObject->email . '</td>';
+            echo '<td>' . $klantObject->telefoon . '</td>';
+            echo '<td>' . $klantObject->changed . '</td>';
+            echo '</tr>';
+        }
+    
+        echo '</table>';
+    }
+    
+
     //delete klant using klant ID
     public function deleteKlant($klantId) {
         require 'database/pureConnect.php';
-        $sql = $conn->prepare('DELETE FROM klanten WHERE klantId = :klantId');
+        $sql = $conn->prepare('DELETE FROM klanten WHERE ID = :klantId');
         $sql->bindParam(':klantId', $klantId);
         $sql->execute();
-    
-        //melding
-        $_SESSION['message'] = 'Klant ' . $klantNaam . ' is verwijderd. <br>';
-        header("Location: klantRead.php");
+        $success = $sql->execute();  // Execute the deletion query and store the result
+
+        if ($success) {
+            // Deletion was successful, so remove the session
+            session_start();
+            session_unset();
+            session_destroy();
+            // Melding
+            $message = 'Uw account is succesvol verwijderd! ';
+            header("Location: loginForm?message=" . urlencode($message));
+        } else {
+            // Deletion failed, handle the error or show an appropriate message
+            $message = 'Er is een fout opgetreden bij het verwijderen van uw account.';
+            header("Location: menuKlant?message=" . urlencode($message));
+        }
     }
 
     //find klant using klant Id for the update form
