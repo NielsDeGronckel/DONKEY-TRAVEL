@@ -8,9 +8,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $usernameKlant = $_POST['usernameKlant'];
     $email = $_POST['email'];
     $telefoon = $_POST['telefoon'];
-    $password = $_POST['passwordKlant'];
+    $password = $_POST['password'];
     $password = password_hash($password, PASSWORD_DEFAULT);
 
+   
 
     //create new instance for the class
     $klant = new Klant();

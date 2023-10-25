@@ -25,6 +25,8 @@
                             echo '<div class="dropdown-content">';
                             echo '<a href="klantReadManagement" class="navLink">Klant</a>'; 
                             echo '<a href="boekingReadManagement" class="navLink">Boekingen</a>'; 
+                            echo '<a href="klantReadManagement" class="navLink">Klant</a>'; 
+                            echo '<a href="boekingReadManagement" class="navLink">Boekingen</a>'; 
                             echo '</div>';
                             echo '</div>';
                             echo '<div class="dropdown">';
@@ -42,6 +44,7 @@
                             echo '<div class="dropdown">';
                             echo '<button class="dropbtn">Management Systeem</button>';
                             echo '<div class="dropdown-content">';
+                            echo '<a href="klantReadManagement" class="navLink">Klant</a>'; 
                             echo '<a href="klantReadManagement" class="navLink">Klant</a>'; 
                             echo '<a href="boekingReadManagement" class="navLink">Boekingen</a>'; 
                             echo '</div>';
