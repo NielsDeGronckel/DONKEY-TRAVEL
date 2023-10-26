@@ -204,9 +204,9 @@ class Klant {
             if (!empty($passwordKlant)) {
                 $sql->bindParam(':passwordKlant', $passwordKlant);
             }
-            
+
             $sql->execute();
-        
+
             $_SESSION['message'] = 'Gefeliciteerd ' . $usernameKlant . ', uw account is succesvol bijgewerkt. <br>';
             header("Location: menuKlant");
         }
