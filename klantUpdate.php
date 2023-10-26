@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $telefoon = $_POST['telefoon'];
     $password = $_POST['password'];
-     if (!empty($passwordKlant)) {
+     if (!empty($password)) {
         $password = trim($password);
      }
     // $password = password_hash($password, PASSWORD_DEFAULT);
