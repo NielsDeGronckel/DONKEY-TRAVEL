@@ -17,8 +17,13 @@
             <div class="basCard">
                 <div class="accountItems">            
                 <h1>Home</h1>
-            <p>	                    Donkey Travel is een adventurebedrijf dat ezels met huifkarren verhuurt.
-</p>
+            <p>Donkey Travel is een adventurebedrijf dat ezels met huifkarren verhuurt.</p>
+            <?php 
+            if (!isset($_SESSION['username'])) {
+            ?>
+
+            <p><a href="loginForm"> Login </a> Om uw boeking te plaatsen of om in tezien.</p>
+            <?php }?>
             <img src="donkey.jpg" alt="Donkey" style="max-width: 500px; max-height: 400px;">
                 </div>
             </div>
