@@ -14,6 +14,11 @@
     <style>
         .basCard {
             overflow-y: scroll;
+            padding: 10px;
+            margin: 10px;
+        }
+        p {
+            padding: 10px;
         }
     </style>
    <div class="content">
@@ -31,6 +36,9 @@
 										Donkey Travel heeft inmiddels een twintigtal ezels met huifkarren rondrijden.
 										Dat aantal breidt zich nog altijd uit.
 									</p>
+                                    <div class="img">
+                                        <img src="assets/donkeyHuifkar.png" alt="Donkey" style="max-width: 500px; max-height: 400px;">
+                                    </div>
 									<p>
 										Na haar studie Culturele Antropologie en ontwikkelingssociologie heeft Loes de Korte een aantal jaren op het Ministerie van Sociale Zaken en Werkgelegenheid gewerkt.
 										Al snel werd duidelijk dat ze daar niet op haar plaats was.
@@ -60,45 +68,13 @@
 										Ook kan het gebeuren dat het bospad geblokkeerd is door een omgevallen boom.
 										Donkey Travel staat haar gasten dan altijd telefonisch met raad en daad bij.
 									</p>
-									<p>
-										<i>
-											<i class="fa-solid fa-quote-left"></i>
-											Toen er een boom over het bospad lag, weigerde onze ezel nog een stap te verzetten.
-											<br/>
-											&nbsp;&nbsp;&nbsp;&nbsp;We waren erg blij met de assistentie van Donkey Travel!
-											<i class="fa-solid fa-quote-right"></i>
-										</i>
-									<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Max en Ine uit Voorthuizen</h5>
-									</p>
-								</div>
-								<div class="col-sm">
-									<div class="text-center">
-										<img src="../loes.jpg" class="rounded" alt="Eigenaresse Loes de Korte" width="348.75" height="391.5">
-										<p>Eigenaresse Loes de Korte</p>
-									</div>
-									<div class='container1'>
-										<div class='img background-img'></div>
-										<div class='img foreground-img'></div>
-										<input type="range" min="1" max="100" value="50" class="slider" name='slider' id="slider">
-										<div class='slider-button'></div>
-									</div>
-								</div>
+                                    
 							</div>
 						</div>
             </div>
         </div>
     </div>
    </main>
-   <script>
-    $("#slider").on("input change", (e)=>{
-        const sliderPos = e.target.value;
-        // Update the width of the foreground image
-        $('.foreground-img').css('width', `${sliderPos}%`)
-        // Update the position of the slider button
-        $('.slider-button').css('left', `calc(${sliderPos}% - 18px)`)
-    });
-</script>
-
     <?php require 'footer.php'?>
 </body>
 </html>
