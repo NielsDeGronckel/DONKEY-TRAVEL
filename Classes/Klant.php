@@ -156,27 +156,38 @@ class Klant {
     
 
     //delete klant using klant ID
-    public function deleteKlant($klantId) {
-        require 'database/pureConnect.php';
-        $sql = $conn->prepare('DELETE FROM klanten WHERE ID = :klantId');
-        $sql->bindParam(':klantId', $klantId);
-        $sql->execute();
-        $success = $sql->execute();  // Execute the deletion query and store the result
+public function deleteKlant($klantId) {
+    require 'database/pureConnect.php'; // Make sure this file establishes a database connection
 
-        if ($success) {
-            // Deletion was successful, so remove the session
-            session_start();
-            session_unset();
+    // Delete from Boekingen table
+    $sql = $conn->prepare('DELETE FROM Boekingen WHERE FKkLantenID = :klantId');
+    $sql->bindParam(':klantId', $klantId);
+    $success2 = $sql->execute();
+
+   
+    // Delete from klanten table
+    $sql = $conn->prepare('DELETE FROM klanten WHERE ID = :klantId');
+    $sql->bindParam(':klantId', $klantId);
+    $success1 = $sql->execute();
+
+    
+    // Check if both deletions were successful
+    if ($success1 && $success2) {
+        // Deletion was successful, so remove the session if it exists
+        session_start();
+        if (isset($_SESSION)) {
             session_destroy();
-            // Melding
-            $message = 'Uw account is succesvol verwijderd! ';
-            header("Location: loginForm?message=" . urlencode($message));
-        } else {
-            // Deletion failed, handle the error or show an appropriate message
-            $message = 'Er is een fout opgetreden bij het verwijderen van uw account.';
-            header("Location: menuKlant?message=" . urlencode($message));
         }
+
+        // Melding
+        $message = 'Uw account is succesvol verwijderd! ';
+        header("Location: loginForm?message=" . urlencode($message));
+    } else {
+        // Deletion failed, handle the error or show an appropriate message
+        $message = 'Er is een fout opgetreden bij het verwijderen van uw account.';
+        header("Location: menuKlant?message=" . urlencode($message));
     }
+}
 
     //find klant using klant Id for the update form
     public function findKlant($klantId) {
