@@ -134,7 +134,7 @@
         const warningText = document.getElementById("warningText");
         const warningText2 = document.getElementById("warningText2");
         
-        const curseWords = ["slet", "kont", "bil", "ass", "booty", "neuk", "auti", "autist", "flikker", "dildo", "kkr", "lukas", "fuck", "hell","crap", "damn", "ass", "hoe", "hoer", "whore", "kanker", "kut", "tering" , "shite", "nigger", "nigga" ,"shit", "bitch"];
+        const curseWords = ["slet", "cancer", "homo", "gay", "kont", "bil", "ass", "booty", "neuk", "auti", "autist", "flikker", "dildo", "kkr", "lukas", "fuck", "hell","crap", "damn", "ass", "hoe", "hoer", "whore", "kanker", "kut", "tering" , "shite", "nigger", "nigga" ,"shit", "bitch"];
 
         // Set maximum username length
         var maxUsernameLength = 22;
